@@ -104,7 +104,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         height: 10,
                       ),
                       Text(
-                        "Google",
+                        "Sign In With Google",
                         style: TextStyle(
                             fontWeight: FontWeight.w400,
                             fontSize: 18,
@@ -122,7 +122,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
 
   Widget _title() {
     return CircleAvatar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.indigo[900],
         radius: 75.0,
         backgroundImage: AssetImage('images/gwgplay-logo.png'));
   }
@@ -147,7 +147,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
-                  colors: [Colors.blue, Colors.red])),
+                  colors: [Colors.black, Colors.blueGrey[600]]
+              )
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -180,7 +182,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     if (_isLoading == true) {
       return Center(
           child: SpinKitFadingCircle(
-            color: LightColor.white,
+            color: LightColor.black,
             size: 50.0,
           ));
     }

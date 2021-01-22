@@ -1,25 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gwgplay/utils/user_auth.dart';
 import 'package:gwgplay/widgets/elements.dart';
 
 final Color backgroundColor = Color(0xFF2d2d39);
 
-class TransactionDetails {
-  final String item;
-  final String companyName;
-  final int ammount;
-  final bool income;
-  final IconData icon;
-
-  TransactionDetails({
-    @required this.item,
-    @required this.ammount,
-    @required this.companyName,
-    @required this.income,
-    @required this.icon,
-  });
-}
 
 class DashboardScreen extends StatefulWidget {
   @override
@@ -29,6 +15,7 @@ class DashboardScreen extends StatefulWidget {
 class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProviderStateMixin {
   Future<bool> _onBackPressed() {
     return showDialog(
+
           context: context,
           barrierDismissible: false, // user must tap button!
           builder: (context) => exitPrompt(context),
@@ -49,46 +36,6 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
   double mainBorderRadius = 0;
   Brightness statusIconColor = Brightness.dark;
 
-  List<TransactionDetails> todayTransactionsList = [
-    new TransactionDetails(
-      item: 'Macbook Pro 15"',
-      companyName: 'Apple',
-      ammount: 2499,
-      income: false,
-      icon: Icons.computer,
-    ),
-    new TransactionDetails(
-      item: 'Incoming Transfer',
-      companyName: 'Upwork',
-      ammount: 499,
-      income: true,
-      icon: Icons.transit_enterexit,
-    ),
-  ];
-
-  List<TransactionDetails> yesterdayTransactionsList = [
-    new TransactionDetails(
-      item: 'Beats Headphone 2th Gen',
-      companyName: 'Apple',
-      ammount: 199,
-      income: false,
-      icon: Icons.headset,
-    ),
-    new TransactionDetails(
-      item: 'Cake',
-      companyName: 'StarBucks',
-      ammount: 19,
-      income: false,
-      icon: Icons.cake,
-    ),
-    new TransactionDetails(
-      item: 'Money Transfer',
-      companyName: 'eSewa',
-      ammount: 499,
-      income: true,
-      icon: Icons.transit_enterexit,
-    ),
-  ];
 
   @override
   void initState() {
@@ -234,25 +181,21 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
                   child: Column(
                     children: <Widget>[
                       menuItem(
-                        title: "Dashboard",
-                        iconData: Icons.account_balance_wallet,
+                        title: "Ghost Groups",
+                        iconData: Icons.group,
                         active: true,
                       ),
                       menuItem(
-                        title: "Messages",
-                        iconData: Icons.chat_bubble_outline,
+                        title: "Ghost Profile",
+                        iconData: Icons.person,
                       ),
                       menuItem(
-                        title: "Utility Bills",
-                        iconData: Icons.receipt,
+                        title: "App Settings",
+                        iconData: Icons.settings,
                       ),
                       menuItem(
-                        title: "Funds Transfer",
-                        iconData: Icons.swap_horiz,
-                      ),
-                      menuItem(
-                        title: "Branches",
-                        iconData: Icons.developer_board,
+                        title: "Help and Feedback",
+                        iconData: Icons.help_outline,
                       ),
                     ],
                   ),
@@ -260,9 +203,12 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
                 SizedBox(
                   height: 70,
                 ),
-                menuItem(
-                  title: "Logout",
-                  iconData: Icons.exit_to_app,
+                ListTile(
+                  leading: Icon(FontAwesomeIcons.signOutAlt),
+                  onTap: (){},
+                  title: Text('Logout',style: TextStyle(
+                      fontSize: 18
+                  ),),
                 ),
               ],
             ),
@@ -272,319 +218,97 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
     );
   }
 
-  Widget bottomBar() {
-    return Align(
-      alignment: Alignment(-1, 1),
-      child: Container(
-        padding: EdgeInsets.fromLTRB(15, 5, 15, 5),
-        height: 70,
-        decoration: BoxDecoration(
-          border: Border.all(
-            color: Colors.black12,
-            width: 1,
-          ),
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(30),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Expanded(
-                flex: 1,
-                child: IconButton(
-                  highlightColor: Colors.red,
-                  splashColor: Colors.greenAccent,
-                  icon: Icon(
-                    Icons.home,
-                    color: Color(0xffa1a5b5),
-                  ),
-                  iconSize: 28,
-                  onPressed: () {},
-                )),
-            Expanded(
-              flex: 1,
-              child: IconButton(
-                iconSize: 28,
-                icon: Icon(
-                  Icons.swap_horiz,
-                  color: Color(0xffa1a5b5),
-                  size: 28,
-                ),
-                onPressed: () {},
-              ),
-            ),
-            Expanded(
-              flex: 1,
-              child: IconButton(
-                icon: Icon(
-                  Icons.show_chart,
-                  color: Color(0xffa1a5b5),
-                ),
-                iconSize: 28,
-                onPressed: () {},
-              ),
-            ),
-            Expanded(
-              flex: 1,
-              child: IconButton(
-                iconSize: 28,
-                icon: Icon(
-                  Icons.notifications_none,
-                  color: Color(0xffa1a5b5),
-                ),
-                onPressed: () {},
-              ),
-            ),
-            Expanded(
-              flex: 1,
-              child: IconButton(
-                iconSize: 28,
-                icon: Icon(
-                  Icons.person_outline,
-                  color: Color(0xffa1a5b5),
-                ),
-                onPressed: () {},
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
+  int currentIndex = 0;
+
+  setBottomBarIndex(index) {
+    setState(() {
+      currentIndex = index;
+    });
   }
 
-  Widget creditCard({
-    String amount,
-    String cardNumber,
-    String cardHolder,
-    String expiringDate,
-    String bankEnding,
-    Color backgroundColor,
-  }) {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 8),
-      decoration: BoxDecoration(
-        color: backgroundColor,
-        borderRadius: BorderRadius.circular(8),
-      ),
-      width: MediaQuery.of(context).size.width - 30,
+  Widget bottomBar() {
+    final Size size = MediaQuery.of(context).size;
+    return Align(
+      alignment: Alignment(-1, 1),
       child: Stack(
-        children: <Widget>[
-          ListView(
-            physics: NeverScrollableScrollPhysics(),
-            padding: EdgeInsets.symmetric(vertical: 20, horizontal: 25),
-            children: <Widget>[
-              Text(
-                'Current Balance',
-                style: TextStyle(
-                  color: Colors.white70,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 12,
-                ),
-              ),
-              Text(
-                '\$$amount',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 24,
-                ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Text(
-                '**** **** **** $cardNumber',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 24,
-                  letterSpacing: 1.3,
-                ),
-              ),
-              SizedBox(
-                height: 15,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                mainAxisSize: MainAxisSize.max,
-                children: <Widget>[
-                  Expanded(
-                    flex: 6,
-                    child: Container(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            'Card Holder',
-                            style: TextStyle(
-                              color: Colors.white70,
-                              fontSize: 10,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                          Text(
-                            '$cardHolder',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 12,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    flex: 6,
-                    child: Container(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            'Expires',
-                            style: TextStyle(
-                              color: Colors.white70,
-                              fontSize: 10,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                          Text(
-                            '$expiringDate',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 12,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
+        children: [
           Positioned(
-            right: 25,
-            top: 25,
-            child: SizedBox(
-              // width: 90,
-              child: Row(
-                children: <Widget>[
-                  Text(
-                    'Bank',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text(
-                    '$bankEnding',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Positioned(
-            right: 25,
-            bottom: 25,
+            bottom: 0,
+            left: 0,
             child: Container(
-              child: Icon(
-                Icons.credit_card,
-                color: Colors.white70,
+              width: size.width,
+              height: 80,
+              child: Stack(
+                overflow: Overflow.visible,
+                children: [
+                  CustomPaint(
+                    size: Size(size.width, 80),
+                    painter: BNBCustomPainter(),
+                  ),
+                  Center(
+                    heightFactor: 0.6,
+                    child: FloatingActionButton(backgroundColor: Colors.redAccent, child: Icon(FontAwesomeIcons.plus), elevation: 0.1, onPressed: () {}),
+                  ),
+                  Container(
+                    width: size.width,
+                    height:size.width,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        IconButton(
+                          icon: Icon(
+                            FontAwesomeIcons.home,
+                            size: 28,
+                            color: currentIndex == 0 ? Colors.redAccent : Colors.blueGrey,
+                          ),
+                          onPressed: () {
+                            setBottomBarIndex(0);
+                          },
+                          splashColor: Colors.white,
+                        ),
+                        IconButton(
+                            icon: Icon(
+                              FontAwesomeIcons.search,size: 28,
+                              color: currentIndex == 1 ? Colors.redAccent : Colors.blueGrey,
+                            ),
+                            onPressed: () {
+                              setBottomBarIndex(1);
+                            }),
+                        Container(
+                          width: size.width * 0.20,
+                        ),
+                        IconButton(
+                            icon: Icon(
+                              FontAwesomeIcons.trophy,
+                              size: 28,
+                              color: currentIndex == 2 ? Colors.redAccent : Colors.blueGrey,
+                            ),
+                            onPressed: () {
+                              setBottomBarIndex(2);
+                            }),
+                        IconButton(
+                            icon: Icon(
+                              FontAwesomeIcons.bell,
+                              size: 28,
+                              color: currentIndex == 3 ? Colors.redAccent : Colors.blueGrey,
+                            ),
+                            onPressed: () {
+                              setBottomBarIndex(3);
+                            }),
+                      ],
+                    ),
+                  )
+                ],
               ),
             ),
-          ),
+          )
         ],
       ),
     );
   }
 
-  Widget transactionList(
-    List<TransactionDetails> transactionList,
-    String strDate, {
-    bool lastElement: false,
-  }) {
-    return ListView(
-      shrinkWrap: true,
-      physics: ClampingScrollPhysics(),
-      children: <Widget>[
-        Container(
-          child: Text(
-            '$strDate',
-            style: TextStyle(
-              color: Color(0xffadb2be),
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-        ),
-        ListView.builder(
-          padding: EdgeInsets.fromLTRB(5, 10, 5, (lastElement) ? 40 : 5),
-          physics: ClampingScrollPhysics(),
-          shrinkWrap: true,
-          itemBuilder: (context, index) {
-            TransactionDetails _transaction = transactionList[index];
-            return Container(
-              margin: EdgeInsets.only(
-                bottom: 20,
-              ),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(8),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey,
-                    blurRadius: 3,
-                  )
-                ],
-              ),
-              // padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
-              child: ListTile(
-                contentPadding: EdgeInsets.fromLTRB(15, 0, 15, 0),
-                leading: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Icon(
-                      _transaction.icon,
-                    ),
-                  ],
-                ),
-                title: Text(
-                  "${_transaction.item}",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                  ),
-                ),
-                subtitle: Text(
-                  "${_transaction.companyName}",
-                  style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                trailing: Text(
-                  (_transaction.income) ? "+${_transaction.ammount} \$" : " -${_transaction.ammount} \$",
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: (_transaction.income) ? Colors.green : Colors.red,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ),
-            );
-          },
-          itemCount: transactionList.length,
-        ),
-      ],
-    );
-  }
+
+
 
   Widget dashboard(context) {
     return AnimatedPositioned(
@@ -610,10 +334,10 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
                   Container(
                     padding: const EdgeInsets.only(
                       top: 5,
-                      bottom: 50,
+                      bottom: 5,
                     ),
                     decoration: BoxDecoration(
-                      color: Colors.white70,
+                      color: Colors.black,
                       borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(25),
                         bottomRight: Radius.circular(25),
@@ -631,7 +355,7 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
                               IconButton(
                                 icon: Icon(
                                   Icons.drag_handle,
-                                  color: Colors.black87,
+                                  color: Colors.white70,
                                 ),
                                 onPressed: () {
                                   setState(() {
@@ -649,115 +373,18 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
                                 },
                               ),
                               Text(
-                                "My Cards",
+                                "Feeds",
                                 style: TextStyle(
                                   fontSize: 20,
-                                  color: Colors.black87,
+                                  color: Colors.white70,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              IconButton(
-                                icon: Icon(
-                                  Icons.add_circle_outline,
-                                  color: Color(0xff1c7bfd),
-                                ),
-                                onPressed: () {},
-                              ),
+                              SizedBox(width: 50,),
                             ],
                           ),
                         ),
                         SizedBox(height: 10),
-                        Container(
-                          height: (MediaQuery.of(context).size.width - 30) * (8 / 16),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(20),
-                              bottomRight: Radius.circular(20),
-                            ),
-                          ),
-                          child: PageView(
-                            controller: PageController(viewportFraction: 0.9),
-                            scrollDirection: Axis.horizontal,
-                            pageSnapping: true,
-                            children: <Widget>[
-                              creditCard(
-                                amount: '12565.23',
-                                cardHolder: 'Bibash Adhikari',
-                                cardNumber: '4545',
-                                expiringDate: '02/21',
-                                bankEnding: 'X',
-                                backgroundColor: Colors.deepOrangeAccent,
-                              ),
-                              creditCard(
-                                amount: '1778.23',
-                                cardHolder: 'Ram Adhikari',
-                                cardNumber: '5045',
-                                expiringDate: '02/21',
-                                bankEnding: 'Y',
-                                backgroundColor: Colors.blueAccent,
-                              ),
-                              creditCard(
-                                amount: '15689556.23',
-                                cardHolder: 'Bibash Adhikari',
-                                cardNumber: '0545',
-                                expiringDate: '02/21',
-                                bankEnding: 'PAGAL',
-                                backgroundColor: Colors.redAccent,
-                              ),
-                              creditCard(
-                                amount: '1203456.23',
-                                cardHolder: 'Bibash Adhikari',
-                                cardNumber: '5405',
-                                expiringDate: '02/21',
-                                bankEnding: 'ONE',
-                                backgroundColor: Colors.greenAccent,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.only(bottom: 10),
-                    child: ListView(
-                      shrinkWrap: true,
-                      physics: ClampingScrollPhysics(),
-                      children: <Widget>[
-                        SizedBox(height: 15),
-                        Container(
-                          padding: EdgeInsets.only(
-                            bottom: 16,
-                            left: 16,
-                            right: 16,
-                          ),
-                          child: ListView(
-                            physics: ClampingScrollPhysics(),
-                            padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-                            shrinkWrap: true,
-                            children: <Widget>[
-                              Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: <Widget>[
-                                  Text(
-                                    "Transactions",
-                                    style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
-                                  ),
-                                  IconButton(
-                                    icon: Icon(
-                                      Icons.settings,
-                                      color: Color(0xffa4a6b8),
-                                    ),
-                                    onPressed: () {},
-                                  ),
-                                ],
-                              ),
-                              transactionList(todayTransactionsList, 'Today'),
-                              transactionList(yesterdayTransactionsList, 'Yesterday', lastElement: true),
-                            ],
-                          ),
-                        ),
                       ],
                     ),
                   ),
@@ -770,6 +397,9 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
       ),
     );
   }
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -794,5 +424,32 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
             ],
           ),
         ));
+  }
+
+}
+class BNBCustomPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    Paint paint = new Paint()
+      ..color = Colors.black
+      ..style = PaintingStyle.fill;
+
+    Path path = Path();
+    path.moveTo(0, 20); // Start
+    path.quadraticBezierTo(size.width * 0.20, 0, size.width * 0.35, 0);
+    path.quadraticBezierTo(size.width * 0.40, 0, size.width * 0.40, 20);
+    path.arcToPoint(Offset(size.width * 0.60, 20), radius: Radius.circular(20.0), clockwise: false);
+    path.quadraticBezierTo(size.width * 0.60, 0, size.width * 0.65, 0);
+    path.quadraticBezierTo(size.width * 0.80, 0, size.width, 20);
+    path.lineTo(size.width, size.height);
+    path.lineTo(0, size.height);
+    path.lineTo(0, 20);
+    canvas.drawShadow(path, Colors.black, 5, true);
+    canvas.drawPath(path, paint);
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) {
+    return false;
   }
 }

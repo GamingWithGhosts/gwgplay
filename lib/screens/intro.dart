@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fancy_on_boarding/fancy_on_boarding.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gwgplay/utils/navigator.dart';
 
 class IntroScreen extends StatefulWidget {
@@ -12,9 +13,9 @@ class IntroScreen extends StatefulWidget {
 class IntroScreenState extends State<IntroScreen> {
   final pageList = [
     PageModel(
-      color: const Color(0xFF678FB4),
-      heroImagePath: 'images/gwgplay-logo.png',
-      title: Text("GWG Play",
+      color: const Color(0xFF82112E  ),
+      heroImagePath: 'images/community.png',
+      title: Text("A Gamers Community",
           style: TextStyle(
             fontWeight: FontWeight.w800,
             color: Colors.white,
@@ -27,45 +28,45 @@ class IntroScreenState extends State<IntroScreen> {
             color: Colors.white,
             fontSize: 18.0,
           )),
-      iconImagePath: 'images/gwgplay-logo.png',
+      icon: Icon(FontAwesomeIcons.globeAsia),
     ),
     PageModel(
-      color: const Color(0xFF65B0B4),
-      heroImagePath: 'images/gwgplay-logo.png',
-      title: Text("GWG Play",
+      color: const Color(0xFFFFFFFF  ),
+      heroImagePath: 'images/gamer.png',
+      title: Text("Connect With Ghosts",
           style: TextStyle(
             fontWeight: FontWeight.w800,
-            color: Colors.white,
+            color: Colors.black,
             fontSize: 34.0,
           )),
       body: Text("Platform To Connect, Learn & Showcase Your Skills",
           textAlign: TextAlign.center,
           style: TextStyle(
             fontWeight: FontWeight.w800,
-            color: Colors.white,
+            color: Colors.black,
             fontSize: 18.0,
           )),
-      iconImagePath: 'images/gwgplay-logo.png',
+      icon: Icon(FontAwesomeIcons.connectdevelop),
     ),
     PageModel(
-      color: const Color(0xFF9B90BC),
-      heroImagePath: 'images/gwgplay-logo.png',
-      title: Text("GWG Play",
+      color: const Color(0xFF010049),
+      heroImagePath: 'images/trophy-icon-21.jpg',
+      title: Text("Tournaments And Prizes",
           style: TextStyle(
             fontWeight: FontWeight.w800,
             color: Colors.white,
             fontSize: 34.0,
           )),
-      body: Text("Platform For Gaming",
+      body: Text("Join tournaments and show your skills to win",
           textAlign: TextAlign.center,
           style: TextStyle(
             color: Colors.white,
             fontSize: 18.0,
           )),
-      iconImagePath: 'images/gwgplay-logo.png',
+      icon:Icon(FontAwesomeIcons.trophy),
     ),
     PageModel(
-      color: const Color(0xFF9B90BC),
+      color: const Color(0xFF000000),
       heroImagePath: 'images/gwgplay-logo.png',
       title: Text("GWG Play",
           style: TextStyle(
@@ -79,7 +80,7 @@ class IntroScreenState extends State<IntroScreen> {
             color: Colors.white,
             fontSize: 18.0,
           )),
-      iconImagePath: 'images/gwgplay-logo.png',
+      icon: Icon(FontAwesomeIcons.handPeace),
     ),
   ];
 

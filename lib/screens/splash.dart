@@ -48,7 +48,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(color: Colors.white70),
+        decoration: BoxDecoration(color: Colors.blueGrey[800]),
         child: Stack(
           fit: StackFit.expand,
           children: <Widget>[
@@ -62,7 +62,7 @@ class _SplashScreenState extends State<SplashScreen> {
                         children: <Widget>[
                           SizedBox(height: 50),
                           CircleAvatar(
-                              backgroundColor: Colors.white,
+                              backgroundColor: Colors.blueGrey[800],
                               radius: 75.0,
                               backgroundImage:
                                   AssetImage('images/gwgplay-logo.png')),
