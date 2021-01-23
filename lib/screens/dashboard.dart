@@ -180,22 +180,35 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
                   margin: EdgeInsets.only(top: 20),
                   child: Column(
                     children: <Widget>[
-                      menuItem(
-                        title: "Ghost Groups",
-                        iconData: Icons.group,
-                        active: true,
+                      ListTile(
+                        leading: Icon(FontAwesomeIcons.users,size: 20,),
+                        onTap: (){},
+                        title: Text('Ghost Groups',style: TextStyle(
+                            fontSize: 14
+                        ),),
                       ),
-                      menuItem(
-                        title: "Ghost Profile",
-                        iconData: Icons.person,
+                      ListTile(
+                        leading: Icon(FontAwesomeIcons.user,size: 20,),
+                        onTap: (){
+                          Navigator.pushNamed(context, "/currentUser");
+                        },
+                        title: Text('Ghost Profile',style: TextStyle(
+                          fontSize: 14
+                        ),),
                       ),
-                      menuItem(
-                        title: "App Settings",
-                        iconData: Icons.settings,
+                      ListTile(
+                        leading: Icon(FontAwesomeIcons.cogs,size: 20,),
+                        onTap: (){},
+                        title: Text('App Settings',style: TextStyle(
+                            fontSize: 14
+                        ),),
                       ),
-                      menuItem(
-                        title: "Help and Feedback",
-                        iconData: Icons.help_outline,
+                      ListTile(
+                        leading: Icon(FontAwesomeIcons.question,size: 20,),
+                        onTap: (){},
+                        title: Text('Help and Feedback',style: TextStyle(
+                            fontSize: 14
+                        ),),
                       ),
                     ],
                   ),
@@ -204,9 +217,9 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
                   height: 70,
                 ),
                 ListTile(
-                  leading: Icon(FontAwesomeIcons.signOutAlt),
+                  leading: Icon(FontAwesomeIcons.copyright),
                   onTap: (){},
-                  title: Text('Logout',style: TextStyle(
+                  title: Text('2021 Gaming With Ghosts',style: TextStyle(
                       fontSize: 18
                   ),),
                 ),
@@ -284,6 +297,7 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
                               color: currentIndex == 2 ? Colors.redAccent : Colors.blueGrey,
                             ),
                             onPressed: () {
+                              Navigator.pushNamed(context, "/tournaments");
                               setBottomBarIndex(2);
                             }),
                         IconButton(

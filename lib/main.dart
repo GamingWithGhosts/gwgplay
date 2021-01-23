@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:gwgplay/screens/currentUserProfile.dart';
 import 'package:gwgplay/screens/dashboard.dart';
 import 'package:gwgplay/screens/intro.dart';
 import 'package:gwgplay/screens/splash.dart';
+import 'package:gwgplay/screens/tournaments.dart';
 import 'package:gwgplay/screens/welcome.dart';
 import 'package:gwgplay/themes/app_theme.dart';
 
 // Routes for redirects
 var routes = <String, WidgetBuilder>{
+  "/currentUser":(BuildContext context) =>currentUserProfile(),
   "/dashboard": (BuildContext context) => DashboardScreen(),
   "/intro": (BuildContext context) => IntroScreen(),
   "/welcome": (BuildContext context) => WelcomeScreen(),
+  "/tournaments" : (BuildContext context)=>tournaments()
 };
 
 Future<void> main() async {
