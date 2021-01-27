@@ -38,6 +38,7 @@ dependencies:
   flutter_secure_storage: 3.3.5
   font_awesome_flutter: 8.11.0
   flutter_responsive_screen: 1.0.0
+  material_floating_search_bar: ^0.2.6
   # Auth Plugins
   google_sign_in: 4.5.9
 

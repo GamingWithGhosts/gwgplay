@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:gwgplay/screens/currentUserProfile.dart';
 import 'package:gwgplay/screens/dashboard.dart';
+import 'package:gwgplay/screens/editprofile.dart';
 import 'package:gwgplay/screens/intro.dart';
+import 'package:gwgplay/screens/otherUserScreen.dart';
+import 'package:gwgplay/screens/searchscreen.dart';
 import 'package:gwgplay/screens/splash.dart';
 import 'package:gwgplay/screens/tournaments.dart';
 import 'package:gwgplay/screens/welcome.dart';
@@ -13,7 +16,10 @@ var routes = <String, WidgetBuilder>{
   "/dashboard": (BuildContext context) => DashboardScreen(),
   "/intro": (BuildContext context) => IntroScreen(),
   "/welcome": (BuildContext context) => WelcomeScreen(),
-  "/tournaments" : (BuildContext context)=>tournaments()
+  "/tournaments" : (BuildContext context)=>tournaments(),
+  "/search" : (BuildContext context) => searchScreen(),
+  "/otheruser" : (BuildContext context) => otherUserProfile(),
+  "/editprofile" : (BuildContext context) => editProfile()
 };
 
 Future<void> main() async {

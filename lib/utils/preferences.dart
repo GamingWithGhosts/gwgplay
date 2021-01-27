@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:shared_preferences/shared_preferences.dart';
 
-const String _prefKey = "lazarusnetwork_";
+const String _prefKey = '';
 const String _kDefaultLanguage = "en";
 
 Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
@@ -12,7 +12,7 @@ class Preferences {
   /// ----------------------------------------------------------
   /// Generic routine to fetch a preference
   /// ----------------------------------------------------------
-  Future<String> _getApplicationSavedInformation(String name) async {
+  Future<String> getApplicationSavedInformation(String name) async {
     final SharedPreferences prefs = await _prefs;
 
     return prefs.getString(_prefKey + name) ?? '';
@@ -21,7 +21,7 @@ class Preferences {
   /// ----------------------------------------------------------
   /// Generic routine to saves a preference
   /// ----------------------------------------------------------
-  Future<bool> _setApplicationSavedInformation(String name, String value) async {
+  Future<bool> setApplicationSavedInformation(String name, String value) async {
     final SharedPreferences prefs = await _prefs;
 
     return prefs.setString(_prefKey + name, value);
@@ -31,10 +31,10 @@ class Preferences {
   /// Method that saves/restores the preferred language
   /// ----------------------------------------------------------
   getPreferredLanguage() async {
-    return _getApplicationSavedInformation('language');
+    return getApplicationSavedInformation('language');
   }
   setPreferredLanguage(String lang) async {
-    return _setApplicationSavedInformation('language', lang);
+    return setApplicationSavedInformation('language', lang);
   }
   String get defaultLanguage => _kDefaultLanguage;
 
@@ -42,10 +42,10 @@ class Preferences {
   /// Method that saves/retrieves whether intro screen was shown
   /// ----------------------------------------------------------
   getIntroductionInformation() async {
-    return _getApplicationSavedInformation('intro');
+    return getApplicationSavedInformation('intro');
   }
   setIntroductionInformation(String status) async {
-    return _setApplicationSavedInformation('intro', status);
+    return setApplicationSavedInformation('intro', status);
   }
 
   // ------------------ SINGLETON -----------------------

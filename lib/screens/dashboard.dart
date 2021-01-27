@@ -3,7 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gwgplay/utils/user_auth.dart';
 import 'package:gwgplay/widgets/elements.dart';
-
+import 'package:gwgplay/models/userFeeds.dart';
+import 'package:gwgplay/models/upcomingtournamentdetails.dart';
 final Color backgroundColor = Color(0xFF2d2d39);
 
 
@@ -13,6 +14,25 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProviderStateMixin {
+
+  List<upcomingTournamentDetails> updetails = [
+    upcomingTournamentDetails(details: '10k prize pool',game: 'Valorant',date:'24th Jan 2020' ),
+    upcomingTournamentDetails(details: '5K prize pool',game: 'CSGO',date: '1st Feb 2020'),
+    upcomingTournamentDetails(details: '2k prize pool',game: 'Minecraft',date:'17th Mar 2020'),
+    upcomingTournamentDetails(details: '2k prize pool',game: 'Among US',date:'8th Apr 2020'),
+    upcomingTournamentDetails(details: '2k prize pool',game: 'GTA 5 Online',date:'23rd Apr 2020'),
+
+  ];
+
+  List<userFeeds> feeds =[
+    userFeeds(dpUrl:'images/ben.jpg',contentUrl:'images/gwgplay-logo.png',userName:'Ben Affleck', time: 'today 9:20 pm', caption: 'OMG ! This GWGPlay is great !',),
+    userFeeds(dpUrl:'images/chris1.jpg',contentUrl:'images/lifeline.jpg',userName:'Chris Hemsworth', time: 'today 8:30 pm', caption: 'The new lifeline skin is dope !',),
+    userFeeds(dpUrl:'images/hugh.jpg',contentUrl:'images/kills.jpeg',userName:'Hugh Jackman', time: 'today 06:08 pm', caption: 'Thrashed a few streamers today...17 kills',),
+    userFeeds(dpUrl:'images/leo.jpeg',contentUrl:'images/amongmeme.jpg',userName:'Leonardo DiCaprio', time: 'today 05:40 pm', caption: 'Only kids play this silly game. LOL',),
+    userFeeds(dpUrl:'images/gamer.png',contentUrl:'images/gamer.png',userName:'Karthik R', time: 'today 04:05 pm', caption: 'Hows my new DP?!',),
+
+  ];
+
   Future<bool> _onBackPressed() {
     return showDialog(
 
@@ -22,8 +42,6 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
         ) ??
         false;
   }
-
-  BuildContext _scaffoldContext;
 
   bool isCollapsed = true;
   double screenWidth, screenHeight;
@@ -48,6 +66,10 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
     ).animate(_controller);
     _slideAnimation = Tween<Offset>(begin: Offset(-1, 0), end: Offset(0, 0)).animate(_controller);
   }
+
+
+
+
 
   @override
   void dispose() {
@@ -95,6 +117,10 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
       ),
     );
   }
+
+
+
+
 
   Widget menu(context) {
     return SlideTransition(
@@ -285,6 +311,7 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
                               color: currentIndex == 1 ? Colors.redAccent : Colors.blueGrey,
                             ),
                             onPressed: () {
+                              Navigator.pushNamed(context, '/search');
                               setBottomBarIndex(1);
                             }),
                         Container(
@@ -294,7 +321,7 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
                             icon: Icon(
                               FontAwesomeIcons.trophy,
                               size: 28,
-                              color: currentIndex == 2 ? Colors.redAccent : Colors.blueGrey,
+                              color: currentIndex == 2 ? Colors.yellow : Colors.blueGrey,
                             ),
                             onPressed: () {
                               Navigator.pushNamed(context, "/tournaments");
@@ -321,9 +348,6 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
     );
   }
 
-
-
-
   Widget dashboard(context) {
     return AnimatedPositioned(
       duration: duration,
@@ -336,39 +360,45 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
         child: Material(
           borderRadius: BorderRadius.circular(mainBorderRadius),
           animationDuration: duration,
-          color: Color(0xfff4faff),
+          color: Colors.blueGrey[900],
           child: SafeArea(
               child: Stack(
             children: <Widget>[
+              SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 100),
+                  child: Column(
+                    children: feeds.map((feed) =>userFeed(
+                      feeds: feed,
+                    )).toList(),
+                  ),
+                ),
+              ),
               ListView(
                 padding: EdgeInsets.all(0),
                 shrinkWrap: true,
                 physics: ClampingScrollPhysics(),
                 children: <Widget>[
                   Container(
-                    padding: const EdgeInsets.only(
-                      top: 5,
-                      bottom: 5,
-                    ),
                     decoration: BoxDecoration(
-                      color: Colors.black,
+                      color: Colors.grey[900],
                       borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(25),
-                        bottomRight: Radius.circular(25),
+                        bottomLeft: Radius.circular(150),
+                        bottomRight: Radius.circular(150),
                       ),
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Padding(
-                          padding: const EdgeInsets.only(left: 16, right: 16),
+                          padding: const EdgeInsets.only(left: 12, right: 16),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               IconButton(
                                 icon: Icon(
-                                  Icons.drag_handle,
+                                  FontAwesomeIcons.bars,size: 21,
                                   color: Colors.white70,
                                 ),
                                 onPressed: () {
@@ -413,8 +443,6 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
   }
 
 
-
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -430,7 +458,7 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
     return new WillPopScope(
         onWillPop: _onBackPressed,
         child: new Scaffold(
-          backgroundColor: Color(0xff343442),
+          backgroundColor: Colors.blueGrey[900],
           body: Stack(
             children: <Widget>[
               menu(context),
@@ -441,11 +469,97 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
   }
 
 }
+
+class userFeed extends StatelessWidget {
+  final userFeeds feeds;
+  userFeed({this.feeds});
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      child: Card(
+        color: Colors.black,
+        margin:EdgeInsets.fromLTRB(3,65,3,0) ,
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children:<Widget> [
+              Row(
+                children: [
+                  CircleAvatar(
+                    radius: 15,
+                    backgroundImage: AssetImage(feeds.dpUrl),
+                  ),
+                  SizedBox(width: 3,),
+                  Text(
+                    feeds.userName,
+                    style: TextStyle(
+                      fontSize: 18.0,
+                      color: Colors.redAccent,
+                    ),
+                  ),
+                  SizedBox(width: 8,),
+                  Text(feeds.time,
+                    style:TextStyle(
+                        fontSize: 12,
+                        color: Colors.white
+                    ),),
+                ],
+              ),
+              SizedBox(height: 6.0,),
+              Text(feeds.caption,
+                style: TextStyle(
+                    fontSize: 20.0,
+                    color: Colors.white
+                ),
+              ),
+
+              SizedBox(height: 0.0),
+              Image(
+                  height:350 ,
+                  width:350 ,
+                  image: AssetImage(feeds.contentUrl),
+                ),
+
+              SizedBox(height: 0.0),
+              Row(
+                children: [
+                  FlatButton.icon(onPressed:(){},
+                    label: Text('Like',style: TextStyle(
+                        color: Colors.white
+                    ),),
+                    icon: Icon(FontAwesomeIcons.heart,color: Colors.white,),
+                  ),
+                  FlatButton.icon(onPressed:(){},
+                    label: Text('Comment',style: TextStyle(
+                        color: Colors.white
+                    ),),
+                    icon: Icon(FontAwesomeIcons.comment,color: Colors.white,),
+                  ),
+                  FlatButton.icon(onPressed:(){},
+                    label: Text('Share',style: TextStyle(
+                        color: Colors.white
+                    ),),
+                    icon: Icon(FontAwesomeIcons.share,color: Colors.white,),
+                  ),
+                ],
+              ),
+              SizedBox(height: 6.0),
+            ],
+          ),
+        ) ,
+      ),
+    );
+  }
+}
+
+
 class BNBCustomPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     Paint paint = new Paint()
-      ..color = Colors.black
+      ..color = Colors.grey[900]
       ..style = PaintingStyle.fill;
 
     Path path = Path();
