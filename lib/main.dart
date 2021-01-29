@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:gwgplay/screens/chatScreen.dart';
 import 'package:gwgplay/screens/currentUserProfile.dart';
 import 'package:gwgplay/screens/dashboard.dart';
 import 'package:gwgplay/screens/editprofile.dart';
+import 'package:gwgplay/screens/ghostGroupsScreen.dart';
 import 'package:gwgplay/screens/intro.dart';
+import 'package:gwgplay/screens/notificationsScreen.dart';
 import 'package:gwgplay/screens/otherUserScreen.dart';
 import 'package:gwgplay/screens/searchscreen.dart';
 import 'package:gwgplay/screens/splash.dart';
 import 'package:gwgplay/screens/tournaments.dart';
+import 'package:gwgplay/screens/uploadPostScreen.dart';
 import 'package:gwgplay/screens/welcome.dart';
 import 'package:gwgplay/themes/app_theme.dart';
 
@@ -19,7 +23,11 @@ var routes = <String, WidgetBuilder>{
   "/tournaments" : (BuildContext context)=>tournaments(),
   "/search" : (BuildContext context) => searchScreen(),
   "/otheruser" : (BuildContext context) => otherUserProfile(),
-  "/editprofile" : (BuildContext context) => editProfile()
+  "/editprofile" : (BuildContext context) => editProfile(),
+  "/uploadPost" : (BuildContext context) => uploadPostScreen(),
+  "/notification" : (BuildContext context) => notificationsScreen(),
+  "/groups" : (BuildContext context) => ghostGroupsProfile(),
+  "/chats" : (BuildContext context) => ChatScreen(),
 };
 
 Future<void> main() async {

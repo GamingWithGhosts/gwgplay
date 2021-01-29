@@ -5,9 +5,9 @@ class userFeeds{
   String userName;
   String time;
   String caption;
+  bool contentType;
 
-
-  userFeeds({this.dpUrl,this.contentUrl,this.userName,this.time,this.caption});
+  userFeeds({this.dpUrl,this.contentUrl,this.userName,this.time,this.caption,this.contentType});
 
 
 }

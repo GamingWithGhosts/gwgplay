@@ -12,9 +12,6 @@ class _tournamentsState extends State<tournaments> {
     ongoingTournamentDetails(details: '3K prize pool',game: 'Apex Legends'),
     ongoingTournamentDetails(details: '5K prize pool',game: 'Fortnite'),
     ongoingTournamentDetails(details: '5K prize pool',game: 'PUBG'),
-
-
-
   ];
 
   List<upcomingTournamentDetails> updetails = [

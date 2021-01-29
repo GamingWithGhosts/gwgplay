@@ -150,7 +150,7 @@ class _editProfileState extends State<editProfile> {
                 SizedBox(height:80,),
                 RaisedButton.icon(onPressed: ()async{
                   await saveDetails();
-                  Navigator.pushReplacementNamed(context, "/currentUser");
+                  Navigator.popAndPushNamed(context, "/currentUser");
                 },
                     color: Colors.grey[800],
                     icon:Icon(FontAwesomeIcons.save,color: Colors.redAccent,),
@@ -158,7 +158,6 @@ class _editProfileState extends State<editProfile> {
                       style: TextStyle(
                         color: Colors.redAccent
                     ),)),
-                Text('')
               ],
           ),
         ),

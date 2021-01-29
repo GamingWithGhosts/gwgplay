@@ -206,6 +206,7 @@ final String searchTerm;
   50,
   (index) => ListTile(
   title: Text('$searchTerm search result'),
+  onTap:() {Navigator.pushNamed(context, "/otheruser");},
   subtitle: Text(index.toString()),
   ),
   ),

@@ -39,6 +39,8 @@ dependencies:
   font_awesome_flutter: 8.11.0
   flutter_responsive_screen: 1.0.0
   material_floating_search_bar: ^0.2.6
+  chewie: ^0.12.2
+  file_picker: ^2.1.5+1
   # Auth Plugins
   google_sign_in: 4.5.9
 

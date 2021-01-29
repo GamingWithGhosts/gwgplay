@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:gwgplay/utils/user_auth.dart';
 import 'package:gwgplay/widgets/elements.dart';
 import 'package:gwgplay/models/userFeeds.dart';
-import 'package:gwgplay/models/upcomingtournamentdetails.dart';
-final Color backgroundColor = Color(0xFF2d2d39);
+import 'package:video_player/video_player.dart';
+import 'package:chewie/chewie.dart';
 
+final Color backgroundColor = Color(0xFF2d2d39);
 
 class DashboardScreen extends StatefulWidget {
   @override
@@ -15,21 +17,12 @@ class DashboardScreen extends StatefulWidget {
 
 class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProviderStateMixin {
 
-  List<upcomingTournamentDetails> updetails = [
-    upcomingTournamentDetails(details: '10k prize pool',game: 'Valorant',date:'24th Jan 2020' ),
-    upcomingTournamentDetails(details: '5K prize pool',game: 'CSGO',date: '1st Feb 2020'),
-    upcomingTournamentDetails(details: '2k prize pool',game: 'Minecraft',date:'17th Mar 2020'),
-    upcomingTournamentDetails(details: '2k prize pool',game: 'Among US',date:'8th Apr 2020'),
-    upcomingTournamentDetails(details: '2k prize pool',game: 'GTA 5 Online',date:'23rd Apr 2020'),
-
-  ];
-
   List<userFeeds> feeds =[
-    userFeeds(dpUrl:'images/ben.jpg',contentUrl:'images/gwgplay-logo.png',userName:'Ben Affleck', time: 'today 9:20 pm', caption: 'OMG ! This GWGPlay is great !',),
-    userFeeds(dpUrl:'images/chris1.jpg',contentUrl:'images/lifeline.jpg',userName:'Chris Hemsworth', time: 'today 8:30 pm', caption: 'The new lifeline skin is dope !',),
-    userFeeds(dpUrl:'images/hugh.jpg',contentUrl:'images/kills.jpeg',userName:'Hugh Jackman', time: 'today 06:08 pm', caption: 'Thrashed a few streamers today...17 kills',),
-    userFeeds(dpUrl:'images/leo.jpeg',contentUrl:'images/amongmeme.jpg',userName:'Leonardo DiCaprio', time: 'today 05:40 pm', caption: 'Only kids play this silly game. LOL',),
-    userFeeds(dpUrl:'images/gamer.png',contentUrl:'images/gamer.png',userName:'Karthik R', time: 'today 04:05 pm', caption: 'Hows my new DP?!',),
+    userFeeds(dpUrl:'images/ben.jpg',contentUrl:'images/gwgplay-logo.png',userName:'Ben Affleck', time: 'today 9:20 pm', caption: 'OMG ! This GWGPlay is great !',contentType: true),
+    userFeeds(dpUrl:'images/chris1.jpg',contentUrl:'images/lifeline.jpg',userName:'Chris Hemsworth', time: 'today 8:30 pm', caption: 'The new lifeline skin is dope !',contentType: true),
+    userFeeds(dpUrl:'images/hugh.jpg',contentUrl:'images/kills.jpeg',userName:'Hugh Jackman', time: 'today 06:08 pm', caption: 'Thrashed a few streamers today...17 kills',contentType:true),
+    userFeeds(dpUrl:'images/leo.jpeg',contentUrl:'images/amongmeme.jpg',userName:'Leonardo DiCaprio', time: 'today 05:40 pm', caption: 'Only kids play this silly game. LOL',contentType: true),
+    userFeeds(dpUrl:'images/gamer.png',contentUrl:'images/apex.mp4',userName:'Karthik R', time: 'today 04:05 pm', caption: 'Hows my new DP?!',contentType: false),
 
   ];
 
@@ -66,8 +59,6 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
     ).animate(_controller);
     _slideAnimation = Tween<Offset>(begin: Offset(-1, 0), end: Offset(0, 0)).animate(_controller);
   }
-
-
 
 
 
@@ -118,10 +109,7 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
     );
   }
 
-
-
-
-
+  
   Widget menu(context) {
     return SlideTransition(
       position: _slideAnimation,
@@ -207,14 +195,17 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
                   child: Column(
                     children: <Widget>[
                       ListTile(
-                        leading: Icon(FontAwesomeIcons.users,size: 20,),
-                        onTap: (){},
+                        leading: Icon(FontAwesomeIcons.users,size: 20,color: Colors.white,),
+                        onTap: (){
+                          Navigator.pushNamed(context, "/groups");
+                        },
                         title: Text('Ghost Groups',style: TextStyle(
                             fontSize: 14
                         ),),
                       ),
                       ListTile(
-                        leading: Icon(FontAwesomeIcons.user,size: 20,),
+                        leading: Icon(FontAwesomeIcons.user,size: 20,
+                        color: Colors.white,),
                         onTap: (){
                           Navigator.pushNamed(context, "/currentUser");
                         },
@@ -223,14 +214,14 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
                         ),),
                       ),
                       ListTile(
-                        leading: Icon(FontAwesomeIcons.cogs,size: 20,),
+                        leading: Icon(FontAwesomeIcons.cogs,size: 20,color: Colors.white,),
                         onTap: (){},
                         title: Text('App Settings',style: TextStyle(
                             fontSize: 14
                         ),),
                       ),
                       ListTile(
-                        leading: Icon(FontAwesomeIcons.question,size: 20,),
+                        leading: Icon(FontAwesomeIcons.question,size: 20,color: Colors.white,),
                         onTap: (){},
                         title: Text('Help and Feedback',style: TextStyle(
                             fontSize: 14
@@ -243,7 +234,7 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
                   height: 70,
                 ),
                 ListTile(
-                  leading: Icon(FontAwesomeIcons.copyright),
+                  leading: Icon(FontAwesomeIcons.copyright,color: Colors.white,),
                   onTap: (){},
                   title: Text('2021 Gaming With Ghosts',style: TextStyle(
                       fontSize: 18
@@ -286,7 +277,10 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
                   ),
                   Center(
                     heightFactor: 0.6,
-                    child: FloatingActionButton(backgroundColor: Colors.redAccent, child: Icon(FontAwesomeIcons.plus), elevation: 0.1, onPressed: () {}),
+                    child: FloatingActionButton(backgroundColor: Colors.redAccent, child: Icon(FontAwesomeIcons.plus), elevation: 0.1,
+                        onPressed: () {
+                       Navigator.pushNamed(context, "/uploadPost");
+                        }),
                   ),
                   Container(
                     width: size.width,
@@ -334,6 +328,7 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
                               color: currentIndex == 3 ? Colors.redAccent : Colors.blueGrey,
                             ),
                             onPressed: () {
+                              Navigator.pushNamed(context, "/notification");
                               setBottomBarIndex(3);
                             }),
                       ],
@@ -418,11 +413,7 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
                               ),
                               Text(
                                 "Feeds",
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.white70,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                                style: GoogleFonts.exo(fontWeight: FontWeight.bold,fontSize: 20,color: Colors.white),
                               ),
                               SizedBox(width: 50,),
                             ],
@@ -467,7 +458,6 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
           ),
         ));
   }
-
 }
 
 class userFeed extends StatelessWidget {
@@ -492,11 +482,10 @@ class userFeed extends StatelessWidget {
                     backgroundImage: AssetImage(feeds.dpUrl),
                   ),
                   SizedBox(width: 3,),
-                  Text(
-                    feeds.userName,
-                    style: TextStyle(
-                      fontSize: 18.0,
-                      color: Colors.redAccent,
+                  Expanded(
+                    child: Text(
+                      feeds.userName,
+                      style: GoogleFonts.exo(fontWeight: FontWeight.bold,color: Colors.red)
                     ),
                   ),
                   SizedBox(width: 8,),
@@ -509,18 +498,20 @@ class userFeed extends StatelessWidget {
               ),
               SizedBox(height: 6.0,),
               Text(feeds.caption,
-                style: TextStyle(
-                    fontSize: 20.0,
-                    color: Colors.white
-                ),
+                style: GoogleFonts.openSans(color: Colors.white,fontSize: 15)
               ),
 
               SizedBox(height: 0.0),
-              Image(
-                  height:350 ,
-                  width:350 ,
-                  image: AssetImage(feeds.contentUrl),
-                ),
+
+              feeds.contentType ? Image(
+                height:350 ,
+                width:350 ,
+                image: AssetImage(feeds.contentUrl),
+              ):playVideo(videoPlayerController: VideoPlayerController.asset(
+                  feeds.contentUrl),
+                looping: true,
+              ),
+
 
               SizedBox(height: 0.0),
               Row(
@@ -551,6 +542,75 @@ class userFeed extends StatelessWidget {
         ) ,
       ),
     );
+  }
+}
+
+
+
+class playVideo extends StatefulWidget {
+
+  final VideoPlayerController videoPlayerController;
+  final bool looping;
+
+  playVideo({
+    @required this.videoPlayerController,
+    this.looping,
+    Key key,
+  }) : super(key: key);
+
+
+  @override
+  _playVideoState createState() => _playVideoState();
+}
+
+class _playVideoState extends State<playVideo> {
+
+  ChewieController _chewieController;
+
+  @override
+  void initState() {
+    super.initState();
+    // Wrapper on top of the videoPlayerController
+    _chewieController = ChewieController(
+      videoPlayerController: widget.videoPlayerController,
+      aspectRatio: 16 / 9,
+      // Prepare the video to be played and display the first frame
+      autoInitialize: true,
+      looping: widget.looping,
+      // Errors can occur for example when trying to play a video
+      // from a non-existent URL
+      errorBuilder: (context, errorMessage) {
+        return Center(
+          child: Text(
+            errorMessage,
+            style: TextStyle(color: Colors.white),
+          ),
+        );
+      },
+    );
+  }
+  
+
+
+  @override
+  Widget build(BuildContext context) {
+    return AspectRatio(
+      aspectRatio: 16/9,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Chewie(
+          controller: _chewieController,
+        ),
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    // IMPORTANT to dispose of all the used resources
+    widget.videoPlayerController.dispose();
+    _chewieController.dispose();
   }
 }
 
