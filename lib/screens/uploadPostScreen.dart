@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class uploadPostScreen extends StatefulWidget {
   @override
@@ -72,7 +73,7 @@ final hashtagController = new TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Color(0xFF2D3436),
       appBar: AppBar(
         iconTheme: IconThemeData(
           color: Colors.white
@@ -93,10 +94,7 @@ final hashtagController = new TextEditingController();
                 decoration:InputDecoration(
                   icon: Icon(FontAwesomeIcons.pen,color: Colors.white,size: 16,),
                   labelText: 'Caption',
-                  labelStyle: TextStyle(
-                    fontSize: 16,
-                    color: Colors.redAccent,
-                  ),
+                  labelStyle: GoogleFonts.exo(fontWeight: FontWeight.bold,color: Colors.white,),
                   hintText: 'Add a caption',
                   hintStyle: TextStyle(
                       color: Colors.white
@@ -109,10 +107,7 @@ final hashtagController = new TextEditingController();
                 decoration:InputDecoration(
                   icon: Icon(FontAwesomeIcons.pen,color: Colors.white,size: 16,),
                   labelText: 'Message',
-                  labelStyle: TextStyle(
-                    fontSize: 16,
-                    color: Colors.redAccent,
-                  ),
+                  labelStyle: GoogleFonts.exo(fontWeight: FontWeight.bold,color: Colors.white,),
                   hintText: 'Add a message',
                   hintStyle: TextStyle(
                       color: Colors.white
@@ -125,10 +120,7 @@ final hashtagController = new TextEditingController();
                 decoration:InputDecoration(
                   icon: Icon(FontAwesomeIcons.pen,color: Colors.white,size: 16,),
                   labelText: '# Hashtag',
-                  labelStyle: TextStyle(
-                    fontSize: 16,
-                    color: Colors.redAccent,
-                  ),
+                  labelStyle: GoogleFonts.exo(fontWeight: FontWeight.bold,color: Colors.white,),
                   hintText: 'Add a hashtag',
                   hintStyle: TextStyle(
                       color: Colors.white
@@ -141,32 +133,32 @@ final hashtagController = new TextEditingController();
                 child: Column(
                   children: [
                     RaisedButton.icon(
-                      color: Colors.grey[800],
+                      color: Color(0xFFFF4654),
                       onPressed:(){
                         _openFileExplorerForImage();
                       },
-                      icon: Icon(FontAwesomeIcons.camera,color: Colors.redAccent,),
+                      icon: Icon(FontAwesomeIcons.camera,color: Colors.white,),
                       label: Text('Upload Photo',style: TextStyle(
-                          color: Colors.redAccent
+                          color: Colors.white
                       ),),
                     ),
                     Text('or'),
                     RaisedButton.icon(
-                      color: Colors.grey[800],
+                      color: Color(0xFFFF4654),
                       onPressed:(){
                         _openFileExplorerForVideo();
                       },
-                      icon: Icon(FontAwesomeIcons.video,color: Colors.redAccent,),
+                      icon: Icon(FontAwesomeIcons.video,color: Colors.white,),
                       label: Text('Upload Video',style: TextStyle(
-                          color: Colors.redAccent
+                          color: Colors.white
                       ),),
                     ),
                     SizedBox(height: 40,),
                     RaisedButton(
                       child: Text('Post',style: TextStyle(
-                        color: Colors.redAccent
+                        color: Colors.white
                       ),),
-                      color: Colors.grey[800],
+                      color: Color(0xFFFF4654),
                       onPressed:(){
                       },
                     ),

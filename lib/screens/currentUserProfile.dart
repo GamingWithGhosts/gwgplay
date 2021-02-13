@@ -1,8 +1,12 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:gwgplay/utils/preferences.dart';
 import 'package:gwgplay/utils/user_auth.dart';
+
+
+
 
 class currentUserProfile extends StatefulWidget {
   @override
@@ -10,6 +14,37 @@ class currentUserProfile extends StatefulWidget {
 }
 
 class _currentUserProfileState extends State<currentUserProfile> {
+
+  String twitter1;
+
+  Future saveDetails()async{
+    await preferences.setApplicationSavedInformation('games', gameController.text);
+    await preferences.setApplicationSavedInformation('platforms', platformController.text);
+    await preferences.setApplicationSavedInformation('twitter', twitterController.text);
+    await preferences.setApplicationSavedInformation('discord', discordController.text);
+    await preferences.setApplicationSavedInformation('instagram', instagramController.text);
+    await preferences.setApplicationSavedInformation('facebook', facebookController.text);
+    print( await preferences.getApplicationSavedInformation('games'));
+  }
+
+  Future loadPreferences()async{
+    games = await preferences.getApplicationSavedInformation('games');
+    platforms = await preferences.getApplicationSavedInformation('platforms');
+    twitter = await preferences.getApplicationSavedInformation('twitter');
+    discord = await preferences.getApplicationSavedInformation('discord');
+    instagram = await preferences.getApplicationSavedInformation('instagram');
+    facebook = await preferences.getApplicationSavedInformation('facebook');
+    print(games);
+  }
+
+
+  final gameController = TextEditingController();
+  final platformController = TextEditingController(text: 'null');
+  final twitterController = TextEditingController(text: 'null');
+  final discordController = TextEditingController(text: 'null');
+  final instagramController = TextEditingController(text: 'null');
+  final facebookController = TextEditingController(text: 'null');
+
 
 String games;
 String platforms;
@@ -23,14 +58,14 @@ String facebook;
   Widget build(BuildContext context) {
 
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Color(0xFF2D3436),
       appBar: AppBar(
         iconTheme: IconThemeData(
           color: Colors.white70
         ),
         title: Text('Your Ghost Profile'),
         centerTitle: true,
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.black87,
         elevation: 0.0,
       ),
       body: Padding(
@@ -49,188 +84,150 @@ String facebook;
                 height: 25.0,
                 color: Colors.white38,
               ),
-              Text('GHOST NAME',style: TextStyle(
-                color: Colors.redAccent,
-                fontWeight: FontWeight.bold,
-                letterSpacing: 2.0,
+              Text('GHOST NAME',style: GoogleFonts.exo(
+                fontWeight: FontWeight.bold,color: Colors.white,letterSpacing: 1.0
               ),
               ),
               SizedBox(height: 5.0,),
               Text(authenticatedUser.name,style: TextStyle(
-                color: Colors.cyan,
-                letterSpacing: 2.0,
-                fontSize: 20.0,
-                fontWeight: FontWeight.bold,
+                color: Colors.white,
+                letterSpacing: 0.5,
+                fontSize: 18.0,
               ),),Divider(
                 height: 20.0,
                 color: Colors.white38,
               ),SizedBox(height: 5.0,),
-              Text('GHOST LEVEL',style: TextStyle(
-                color: Colors.redAccent,
-                fontWeight: FontWeight.bold,
-                letterSpacing: 2.0,
+              Text('GHOST LEVEL',style: GoogleFonts.exo(
+                  fontWeight: FontWeight.bold,color: Colors.white,letterSpacing: 1.0
               ),
               ),
               SizedBox(height: 5.0,),
-
               Text('72',style: TextStyle(
-                color: Colors.cyan,
-                letterSpacing: 2.0,
-                fontSize: 20.0,
-                fontWeight: FontWeight.bold,
+                color: Colors.white,
+                letterSpacing: 0.5,
+                fontSize: 18.0,
               ),),
               Divider(
                 height: 20.0,
                 color: Colors.white38,
               ),
-              SizedBox(height: 5.0,),
-              Text('GAMES YOU PLAY',style: TextStyle(
-                color: Colors.redAccent,
-                fontWeight: FontWeight.bold,
-                letterSpacing: 2.0,
-              ),
-              ),
-              SizedBox(height: 10.0,),
-
-              Text('$games',style: TextStyle(
-                color: Colors.cyan,
-                letterSpacing: 2.0,
-                fontSize: 20.0,
-                fontWeight: FontWeight.bold,
-              ),),
-              Divider(
-                height: 20.0,
-                color: Colors.white38,
-              ),
-              SizedBox(height: 5.0,),
-              Text('YOUR PLATFORMS',style: TextStyle(
-                color: Colors.redAccent,
-                fontWeight: FontWeight.bold,
-                letterSpacing: 2.0,
-              ),
-              ),
-              SizedBox(height: 10.0,),
-
-              Text('$platforms',style: TextStyle(
-                color: Colors.cyan,
-                letterSpacing: 2.0,
-                fontSize: 20.0,
-                fontWeight: FontWeight.bold,
-              ),),
-              Divider(
-                height: 20.0,
-                color: Colors.white38,
-              ),
-              SizedBox(height: 5.0,),
-              Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.email_outlined,
-                    color: Colors.grey[400],
+              TextField(controller: gameController,
+                cursorColor: Colors.white70,
+                decoration:InputDecoration(
+                  labelText: 'Your Games',
+                  labelStyle: GoogleFonts.exo(
+                    color: Colors.white,fontWeight: FontWeight.bold,letterSpacing: 1.0
                   ),
-                  SizedBox(width: 10.0,),
-                  Text('vaibhavkarthik@gmail.com',style: TextStyle(
-                      color: Colors.grey[350],
-                      fontSize:20.0,
-                      letterSpacing: 1.0
-                  ),),
-                ],
+                  hintText: 'Enter the games you play',
+                  hintStyle: TextStyle(
+                      color: Colors.grey
+                  ),
+
+                ),),
+              SizedBox(height: 5.0,),
+              TextField(controller: platformController,
+                cursorColor: Colors.white70,
+                decoration:InputDecoration(
+                  labelText: 'Your Platforms',
+                  labelStyle: GoogleFonts.exo(
+                      color: Colors.white,fontWeight: FontWeight.bold,letterSpacing: 1.0,fontSize: 18
+                  ),
+                  hintText: 'Enter the platform on which you play',
+                  hintStyle: TextStyle(
+                      color: Colors.grey
+                  ),
+
+                ),
               ),
-              SizedBox(height: 30,),
+              SizedBox(height: 10.0,),
               Padding(
-                padding: const EdgeInsets.only(left: 15),
-                child: Row(
-                  children: <Widget>[
-                    Expanded(
-                      child: RichText(
-                        text: TextSpan(
-                          text: '@$twitter',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.white70
-                          ),children: [
-                            WidgetSpan(
-                                child: Icon(FontAwesomeIcons.twitter,color: Colors.blue,size: 19,),
-                                alignment: PlaceholderAlignment.middle
-                            )
-                        ]
+                padding: const EdgeInsets.only(left:0,top: 10),
+                child: Column(
+                  children: [
+                        TextField(
+                          controller: twitterController,
+                          cursorColor: Colors.white,
+                          decoration:InputDecoration(
+                            icon: Icon(FontAwesomeIcons.twitter,color: Colors.white,size: 18,),
+                            labelText: 'Twitter',
+                            labelStyle: GoogleFonts.exo(
+                                color: Colors.white,fontWeight: FontWeight.bold,letterSpacing: 1.0
+                            ),
+                            hintText: 'Enter your twitter ID',
+                            hintStyle: TextStyle(
+                                color: Colors.grey
+                            ),
+
+                          ),
                         ),
+                    TextField(
+                      controller: instagramController,
+                      cursorColor: Colors.white,
+                      decoration:InputDecoration(
+                        icon: Icon(FontAwesomeIcons.instagram,color: Colors.white,size: 18,),
+                        labelText: 'Instagram',
+                        labelStyle: GoogleFonts.exo(
+                            color: Colors.white,fontWeight: FontWeight.bold,letterSpacing: 1.0
+                        ),
+                        hintText: 'Enter your Instagram ID',
+                        hintStyle: TextStyle(
+                            color: Colors.grey
+                        ),
+
                       ),
                     ),
-                    SizedBox(width:50 ,),
-                    Expanded(
-                      child: RichText(
-                        text: TextSpan(
-                            text: '@$instagram',
-                            style: TextStyle(
-                                fontSize: 14,
-                                color: Colors.white70
-                            ),children: [
-                          WidgetSpan(
-                              child: Icon(FontAwesomeIcons.instagram,color: Colors.pinkAccent,size: 19,),
-                              alignment: PlaceholderAlignment.middle
-                          )
-                        ]
+                    TextField(
+                      controller: discordController,
+                      cursorColor: Colors.white,
+                      decoration:InputDecoration(
+                        icon: Icon(FontAwesomeIcons.discord,color: Colors.white,size: 18,),
+                        labelText: 'Discord',
+                        labelStyle: GoogleFonts.exo(
+                            color: Colors.white,fontWeight: FontWeight.bold,letterSpacing: 1.0
                         ),
+                        hintText: 'Enter your Discord ID',
+                        hintStyle: TextStyle(
+                            color: Colors.grey
+                        ),
+
                       ),
                     ),
+                    TextField(
+                      controller: facebookController,
+                      cursorColor: Colors.white,
+                      decoration:InputDecoration(
+                        icon: Icon(FontAwesomeIcons.facebookSquare,color: Colors.white,size: 18,),
+                        labelText: 'Facebook',
+                        labelStyle: GoogleFonts.exo(
+                            color: Colors.white,fontWeight: FontWeight.bold,letterSpacing: 1.0
+                        ),
+                        hintText: 'Enter your Facebook ID',
+                        hintStyle: TextStyle(
+                            color: Colors.grey
+                        ),
+
+                      ),
+                    ),
+                    SizedBox(height: 8,),
                   ],
                 ),
               ),
-              SizedBox(height: 50,),
-              Padding(
-                padding: const EdgeInsets.only(left: 15),
-                child: Row(
-                  children: <Widget>[
-                    Expanded(
-                      child: RichText(
-                        text: TextSpan(
-                            text: '@$discord',
-                            style: TextStyle(
-                                fontSize: 14,
-                                color: Colors.white70
-                            ),children: [
-                          WidgetSpan(
-                              child: Icon(FontAwesomeIcons.discord,color: Colors.indigo[800],size: 19,),
-                              alignment: PlaceholderAlignment.middle
-                          )
-                        ]
-                        ),
-                      ),
-                    ),
-                    SizedBox(width:50 ,),
-                    Expanded(
-                      child: RichText(
-                        text: TextSpan(
-                            text: '@$facebook',
-                            style: TextStyle(
-                                fontSize: 14,
-                                color: Colors.white70
-                            ),children: [
-                          WidgetSpan(
-                              child: Icon(FontAwesomeIcons.facebookSquare,color: Colors.blue[800],size: 19,),
-                              alignment: PlaceholderAlignment.middle
-                          )
-                        ]
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(height: 50,),
-              Center(
-                child: RaisedButton.icon(
-                  color: Colors.grey[800],
-                  onPressed:(){
-                    Navigator.popAndPushNamed(context, "/editprofile");
-                  },
-                  icon: Icon(FontAwesomeIcons.edit,color: Colors.redAccent,),
-                  label: Text('Edit Profile',style: TextStyle(
-                    color: Colors.redAccent
-                  ),),
-                ),
-              ),
+               SizedBox(height: 30,),
+               Center(
+                 child: RaisedButton.icon(
+                   color: Color(0xFFFF4654),
+                   onPressed:()async{
+                     await saveDetails();
+                     setState(() {
+
+                     });
+                   },
+                   icon: Icon(FontAwesomeIcons.save,color: Colors.white,),
+                   label: Text('Save Profile',style: TextStyle(
+                     color: Colors.white
+                   ),),
+                 ),
+               ),
             ],
           ),
         ),
@@ -243,19 +240,8 @@ String facebook;
   void initState() {
     currentUserProfile();
     loadPreferences();
-
     super.initState();
   }
-  Future loadPreferences()async{
-    games = await preferences.getApplicationSavedInformation('games');
-    platforms = await preferences.getApplicationSavedInformation('platforms');
-    twitter = await preferences.getApplicationSavedInformation('twitter');
-    discord = await preferences.getApplicationSavedInformation('discord');
-    instagram = await preferences.getApplicationSavedInformation('instagram');
-    facebook = await preferences.getApplicationSavedInformation('facebook');
-    print(games);
-  }
-
 
 }
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:gwgplay/models/ongoingtournamentdetails.dart';
 import 'package:gwgplay/models/upcomingtournamentdetails.dart';
 class tournaments extends StatefulWidget {
@@ -30,9 +31,9 @@ class _tournamentsState extends State<tournaments> {
       home: DefaultTabController(
         length: 2,
         child: Scaffold(
-          backgroundColor: Colors.blueGrey,
+          backgroundColor: Color(0xFF2D3436),
           appBar: AppBar(
-            backgroundColor: Colors.black,
+            backgroundColor: Colors.black87,
             bottom: TabBar(
               indicatorColor: Colors.redAccent,
               tabs: [
@@ -74,8 +75,8 @@ class onTourDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.black,
-      margin:EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0) ,
+      color: Color(0xFFDFE6E9),
+      margin:EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 10) ,
       child: Padding(
         padding: const EdgeInsets.all(12.0),
         child: Column(
@@ -84,10 +85,9 @@ class onTourDetails extends StatelessWidget {
             Center(
               child: Text(
                 details.game,
-                style: TextStyle(
-                  fontSize: 26,
-                  color: Colors.redAccent,
-                ),
+                style: GoogleFonts.exo(
+                  color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20
+                )
               ),
             ),
             SizedBox(height: 25.0,),
@@ -96,16 +96,17 @@ class onTourDetails extends StatelessWidget {
                 details.details,
                 style: TextStyle(
                     fontSize: 14.0,
-                    color: Colors.redAccent
+                    color: Colors.black
                 ),
               ),
             ),
             SizedBox(height: 25.0),
             FlatButton.icon(onPressed:(){},
+              color: Color(0xFFFF4654),
               label: Text('View Details',style: TextStyle(
-                color: Colors.redAccent
+                color: Colors.white
               ),),
-              icon: Icon(FontAwesomeIcons.infoCircle,color: Colors.redAccent,),
+              icon: Icon(FontAwesomeIcons.infoCircle,color: Colors.white,),
             ),
             SizedBox(height: 0),
           ],
@@ -123,8 +124,8 @@ class upTourDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.black,
-      margin:EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0) ,
+      color: Color(0xFFDFE6E9),
+      margin:EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 10) ,
       child: Padding(
         padding: const EdgeInsets.all(12.0),
         child: Column(
@@ -133,9 +134,7 @@ class upTourDetails extends StatelessWidget {
             Center(
               child: Text(
                 details.game,
-                style: TextStyle(
-                  fontSize: 26.0,
-                  color: Colors.redAccent,
+                style: GoogleFonts.exo(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20
                 ),
               ),
             ),
@@ -145,7 +144,7 @@ class upTourDetails extends StatelessWidget {
                 details.details,
                 style: TextStyle(
                     fontSize: 14.0,
-                    color: Colors.redAccent
+                    color: Colors.black
                 ),
               ),
             ),
@@ -155,16 +154,17 @@ class upTourDetails extends StatelessWidget {
                 details.date,
                 style: TextStyle(
                     fontSize: 14.0,
-                    color: Colors.white70
+                    color: Colors.black
                 ),
               ),
             ),
             SizedBox(height: 15.0),
             FlatButton.icon(onPressed:(){},
+              color: Color(0xFFFF4654),
               label: Text('Join Tournament',style: TextStyle(
-                color: Colors.redAccent
+                color: Colors.white
               ),),
-              icon: Icon(FontAwesomeIcons.handshake,color: Colors.redAccent,),
+              icon: Icon(FontAwesomeIcons.handshake,color: Colors.white,),
             ),
             SizedBox(height: 6.0),
           ],

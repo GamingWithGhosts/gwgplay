@@ -200,7 +200,7 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
                           Navigator.pushNamed(context, "/groups");
                         },
                         title: Text('Ghost Groups',style: TextStyle(
-                            fontSize: 14
+                            fontSize: 14,color: Colors.white
                         ),),
                       ),
                       ListTile(
@@ -210,21 +210,21 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
                           Navigator.pushNamed(context, "/currentUser");
                         },
                         title: Text('Ghost Profile',style: TextStyle(
-                          fontSize: 14
+                          fontSize: 14,color: Colors.white
                         ),),
                       ),
                       ListTile(
                         leading: Icon(FontAwesomeIcons.cogs,size: 20,color: Colors.white,),
                         onTap: (){},
                         title: Text('App Settings',style: TextStyle(
-                            fontSize: 14
+                            fontSize: 14,color: Colors.white
                         ),),
                       ),
                       ListTile(
                         leading: Icon(FontAwesomeIcons.question,size: 20,color: Colors.white,),
                         onTap: (){},
                         title: Text('Help and Feedback',style: TextStyle(
-                            fontSize: 14
+                            fontSize: 14,color: Colors.white
                         ),),
                       ),
                     ],
@@ -233,12 +233,18 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
                 SizedBox(
                   height: 70,
                 ),
-                ListTile(
-                  leading: Icon(FontAwesomeIcons.copyright,color: Colors.white,),
-                  onTap: (){},
-                  title: Text('2021 Gaming With Ghosts',style: TextStyle(
-                      fontSize: 18
-                  ),),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 10,left: 87),
+                  child: Row(
+                    children: <Widget>[
+                      Icon(FontAwesomeIcons.copyright,color: Colors.white,size: 15,),
+                      SizedBox(width: 3,),
+                      Text('2021 Gaming With Ghosts',
+                      style: TextStyle(
+                        color: Colors.white
+                      ),)
+                    ],
+                  ),
                 ),
               ],
             ),
@@ -292,7 +298,7 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
                           icon: Icon(
                             FontAwesomeIcons.home,
                             size: 28,
-                            color: currentIndex == 0 ? Colors.redAccent : Colors.blueGrey,
+                            color: currentIndex == 0 ? Colors.redAccent : Colors.white,
                           ),
                           onPressed: () {
                             setBottomBarIndex(0);
@@ -302,7 +308,7 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
                         IconButton(
                             icon: Icon(
                               FontAwesomeIcons.search,size: 28,
-                              color: currentIndex == 1 ? Colors.redAccent : Colors.blueGrey,
+                              color: currentIndex == 1 ? Colors.redAccent : Colors.white,
                             ),
                             onPressed: () {
                               Navigator.pushNamed(context, '/search');
@@ -315,7 +321,7 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
                             icon: Icon(
                               FontAwesomeIcons.trophy,
                               size: 28,
-                              color: currentIndex == 2 ? Colors.yellow : Colors.blueGrey,
+                              color: currentIndex == 2 ? Colors.redAccent : Colors.white,
                             ),
                             onPressed: () {
                               Navigator.pushNamed(context, "/tournaments");
@@ -325,7 +331,7 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
                             icon: Icon(
                               FontAwesomeIcons.bell,
                               size: 28,
-                              color: currentIndex == 3 ? Colors.redAccent : Colors.blueGrey,
+                              color: currentIndex == 3 ? Colors.redAccent : Colors.white,
                             ),
                             onPressed: () {
                               Navigator.pushNamed(context, "/notification");
@@ -355,7 +361,7 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
         child: Material(
           borderRadius: BorderRadius.circular(mainBorderRadius),
           animationDuration: duration,
-          color: Colors.blueGrey[900],
+          color: Color(0xFF2D3436),
           child: SafeArea(
               child: Stack(
             children: <Widget>[
@@ -376,24 +382,24 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
                 children: <Widget>[
                   Container(
                     decoration: BoxDecoration(
-                      color: Colors.grey[900],
+                      color: Color(0xFF192734),
                       borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(150),
-                        bottomRight: Radius.circular(150),
+                        bottomLeft: Radius.circular(0),
+                        bottomRight: Radius.circular(0),
                       ),
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Padding(
-                          padding: const EdgeInsets.only(left: 12, right: 16),
+                          padding: const EdgeInsets.only(left: 1, right: 0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               IconButton(
                                 icon: Icon(
-                                  FontAwesomeIcons.bars,size: 21,
+                                  FontAwesomeIcons.bars,size: 22,
                                   color: Colors.white70,
                                 ),
                                 onPressed: () {
@@ -419,7 +425,6 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
                             ],
                           ),
                         ),
-                        SizedBox(height: 10),
                       ],
                     ),
                   ),
@@ -449,7 +454,7 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
     return new WillPopScope(
         onWillPop: _onBackPressed,
         child: new Scaffold(
-          backgroundColor: Colors.blueGrey[900],
+          backgroundColor: Color(0xFF2D3436),
           body: Stack(
             children: <Widget>[
               menu(context),
@@ -460,18 +465,25 @@ class _DashboardScreenState extends State<DashboardScreen> with SingleTickerProv
   }
 }
 
-class userFeed extends StatelessWidget {
+class userFeed extends StatefulWidget {
   final userFeeds feeds;
   userFeed({this.feeds});
 
   @override
+  _userFeedState createState() => _userFeedState();
+}
+
+class _userFeedState extends State<userFeed> {
+  bool isPressed=false;
+  @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Card(
-        color: Colors.black,
-        margin:EdgeInsets.fromLTRB(3,65,3,0) ,
+        borderOnForeground: true,
+        color: Color(0xFFDFE6E9),
+        margin:EdgeInsets.fromLTRB(3,55,3,0) ,
         child: Padding(
-          padding: const EdgeInsets.all(12.0),
+          padding: const EdgeInsets.all(8.5),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children:<Widget> [
@@ -479,64 +491,75 @@ class userFeed extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     radius: 15,
-                    backgroundImage: AssetImage(feeds.dpUrl),
+                    backgroundImage: AssetImage(widget.feeds.dpUrl),
                   ),
                   SizedBox(width: 3,),
                   Expanded(
                     child: Text(
-                      feeds.userName,
-                      style: GoogleFonts.exo(fontWeight: FontWeight.bold,color: Colors.red)
+                      widget.feeds.userName,
+                      style: GoogleFonts.exo(fontWeight: FontWeight.bold,color: Color(0xFF333333))
                     ),
                   ),
                   SizedBox(width: 8,),
-                  Text(feeds.time,
+                  Text(widget.feeds.time,
                     style:TextStyle(
                         fontSize: 12,
-                        color: Colors.white
+                        color: Color(0xFF333333)
                     ),),
                 ],
               ),
               SizedBox(height: 6.0,),
-              Text(feeds.caption,
-                style: GoogleFonts.openSans(color: Colors.white,fontSize: 15)
+              Text(widget.feeds.caption,
+                style: GoogleFonts.openSans(color: Color(0xFF333333),fontSize: 15)
               ),
-
-              SizedBox(height: 0.0),
-
-              feeds.contentType ? Image(
+              widget.feeds.contentType ? Image(
                 height:350 ,
                 width:350 ,
-                image: AssetImage(feeds.contentUrl),
+                image: AssetImage(widget.feeds.contentUrl),
               ):playVideo(videoPlayerController: VideoPlayerController.asset(
-                  feeds.contentUrl),
+                  widget.feeds.contentUrl),
                 looping: true,
               ),
-
-
               SizedBox(height: 0.0),
-              Row(
-                children: [
-                  FlatButton.icon(onPressed:(){},
-                    label: Text('Like',style: TextStyle(
-                        color: Colors.white
-                    ),),
-                    icon: Icon(FontAwesomeIcons.heart,color: Colors.white,),
-                  ),
-                  FlatButton.icon(onPressed:(){},
-                    label: Text('Comment',style: TextStyle(
-                        color: Colors.white
-                    ),),
-                    icon: Icon(FontAwesomeIcons.comment,color: Colors.white,),
-                  ),
-                  FlatButton.icon(onPressed:(){},
-                    label: Text('Share',style: TextStyle(
-                        color: Colors.white
-                    ),),
-                    icon: Icon(FontAwesomeIcons.share,color: Colors.white,),
-                  ),
-                ],
-              ),
-              SizedBox(height: 6.0),
+               ColoredBox(
+                   color: Colors.grey[400],
+                   child: Row(
+                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        FlatButton.icon(onPressed:(){
+                          setState(() {
+                            isPressed=true;
+                          });
+                        },
+                          label: Text('Like',style: TextStyle(
+                              color: Colors.black
+                          ),),
+                          icon: Icon(isPressed?FontAwesomeIcons.solidHeart:FontAwesomeIcons.heart,
+                            color:isPressed?Colors.pinkAccent:Colors.black,
+                            size: 23,
+                          ),
+                        ),
+                        FlatButton.icon(onPressed:(){
+                          Navigator.pushNamed(context, "/comments");
+                        },
+                          label: Text('Comment',style: TextStyle(
+                              color: Colors.black
+                          ),),
+                          icon: Icon(FontAwesomeIcons.comment,color: Colors.black,
+                          size: 23,),
+                        ),
+                        FlatButton.icon(onPressed:(){},
+                          label: Text('Share',style: TextStyle(
+                              color: Colors.black
+                          ),),
+                          icon: Icon(FontAwesomeIcons.shareSquare,color: Colors.black,
+                          size: 23,),
+                        ),
+                      ],
+                    ),
+                 ),
+
+              SizedBox(height: 4.0),
             ],
           ),
         ) ,
@@ -619,7 +642,7 @@ class BNBCustomPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     Paint paint = new Paint()
-      ..color = Colors.grey[900]
+      ..color = Color(0xFF192734)
       ..style = PaintingStyle.fill;
 
     Path path = Path();

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:gwgplay/models/ghostGroupsInfo.dart';
 
 class ghostGroupsProfile extends StatefulWidget {
@@ -24,11 +25,14 @@ class _ghostGroupsProfileState extends State<ghostGroupsProfile> {
         style: TextStyle(
           color: Colors.white
         ),),
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.black87,
         iconTheme: IconThemeData(color: Colors.white),
       ),
-      backgroundColor: Colors.black,
+      backgroundColor: Color(0xFF2D3436),
       floatingActionButton: FloatingActionButton(
+        onPressed: (){
+          Navigator.pushNamed(context, "/createTeam");
+        },
         backgroundColor: Colors.redAccent,
         child: Icon(FontAwesomeIcons.plus,color: Colors.white,),
       ),
@@ -55,21 +59,22 @@ class groups extends StatelessWidget {
     return Column(
       children: [
         ListTile(
-          tileColor: Colors.black,
+          tileColor: Color(0xFFDFE6E9),
           leading: CircleAvatar(
             radius: 18,
             backgroundImage: AssetImage(groupsInfo.groupIcon),
           ),
           title: Row(
             children: [
-              Expanded(child: Text(groupsInfo.groupTitle)),
-              Text(groupsInfo.time)
+              Expanded(child: Text(groupsInfo.groupTitle,style: GoogleFonts.exo(fontWeight: FontWeight.bold,color: Colors.black),)),
+              Text(groupsInfo.time,style: TextStyle(color: Colors.black),)
             ],
           ),
           subtitle: Row(
             children: [
               Expanded(
                 child: Text(groupsInfo.message,
+                  style: TextStyle(color: Colors.black),
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1,
                   softWrap: false,
@@ -78,10 +83,10 @@ class groups extends StatelessWidget {
             ],
           ),
           onTap: (){
-            Navigator.pushNamed(context, "/chats");
+            Navigator.pushNamed(context, "/teamDetails");
           },
         ),
-        Divider(height: 5,color: Colors.redAccent,)
+        Divider(height: 5,color: Colors.black,)
       ],
     );
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:gwgplay/utils/user_auth.dart';
 
 class otherUserProfile extends StatefulWidget {
@@ -19,7 +20,7 @@ class _otherUserProfileState extends State<otherUserProfile> {
           color: Colors.white70,
         ),
       ),
-      backgroundColor: Colors.black,
+      backgroundColor: Color(0xFF2D3436),
       body: Padding(
         padding: const EdgeInsets.only(left: 10,top: 10),
         child: Column(
@@ -39,96 +40,93 @@ class _otherUserProfileState extends State<otherUserProfile> {
               endIndent:105,
               color: Colors.white70,),
             SizedBox(height:5 ,),
-            RichText(
-              text:TextSpan(
-              text:'@vaibhavkarthik',
-              style: TextStyle(
-                color: Colors.white70,
-                fontSize: 18
-              ),
-                  children:[
+            Expanded(
+              child: RichText(
+                text:TextSpan(
+                text:'@vaibhavkarthik',
+                style: TextStyle(
+                  color: Colors.white70,
+                  fontSize: 18
+                ),
+                    children:[
+                      WidgetSpan(
+                        child: Icon(FontAwesomeIcons.twitter,color: Colors.blue,size: 19,)
+                      )
+                    ]
+              ),),
+            ),
+            Expanded(
+              child: RichText(
+                  text: TextSpan(
+                  text: '@karthik0304',
+                  style: TextStyle(
+                        fontSize: 18,
+                    color: Colors.white70,
+              ),children: [
+                WidgetSpan(
+                  child: Icon(FontAwesomeIcons.instagram,color: Colors.pinkAccent,size: 19,),
+                    alignment: PlaceholderAlignment.middle
+                )
+              ]
+              )),
+            ),
+            Expanded(
+              child: RichText(
+                  text: TextSpan(
+                      text: '@karthik0304',
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white70,
+                      ),children: [
                     WidgetSpan(
-                      child: Icon(FontAwesomeIcons.twitter,color: Colors.blue,size: 19,)
+                        child: Icon(FontAwesomeIcons.discord,color: Colors.indigo[500],size: 19,),
+                        alignment: PlaceholderAlignment.middle
                     )
                   ]
-            ),),
+                  )),
+            ),
             SizedBox(height: 2,),
-            RichText(
-                text: TextSpan(
-                text: '@karthik0304',
-                style: TextStyle(
-                      fontSize: 18,
-                  color: Colors.white70,
-            ),children: [
-              WidgetSpan(
-                child: Icon(FontAwesomeIcons.instagram,color: Colors.pinkAccent,size: 19,),
-                  alignment: PlaceholderAlignment.middle
-              )
-            ]
-            )),
-            SizedBox(height: 2,),
-            RichText(
-                text: TextSpan(
-                    text: '@karthik0304',
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.white70,
-                    ),children: [
-                  WidgetSpan(
-                      child: Icon(FontAwesomeIcons.discord,color: Colors.indigo[500],size: 19,),
-                      alignment: PlaceholderAlignment.middle
-                  )
-                ]
-                )),
-            SizedBox(height: 2,),
-            RichText(
-                text: TextSpan(
-                    text: '@karthik0304',
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.white70,
-                    ),children: [
-                  WidgetSpan(
-                      child: Icon(FontAwesomeIcons.facebookSquare,color: Colors.blue,size: 19,),
-                      alignment: PlaceholderAlignment.middle
-                  )
-                ]
-                )),
+            Expanded(
+              child: RichText(
+                  text: TextSpan(
+                      text: '@karthik0304',
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white70,
+                      ),children: [
+                    WidgetSpan(
+                        child: Icon(FontAwesomeIcons.facebookSquare,color: Colors.blue,size: 19,),
+                        alignment: PlaceholderAlignment.middle
+                    )
+                  ]
+                  )),
+            ),
             SizedBox(height: 15,),
             Text('Plays',textAlign: TextAlign.left,
-            style: TextStyle(
-              color: Colors.redAccent,
-              fontSize: 20,
-            ),),
+            style: GoogleFonts.exo(fontWeight: FontWeight.bold,color: Colors.white,fontSize: 20),),
             SizedBox(height: 10,),
             Text('Valorant, Warzone',
             style: TextStyle(
               fontSize: 18,
-              color: Colors.lightBlueAccent
+              color: Colors.white
             ),),
             SizedBox(height: 25,),
             Text('Platforms',
-                style: TextStyle(
-                    color: Colors.redAccent,
-                    fontSize: 20
-                )),
+                style:GoogleFonts.exo(fontWeight: FontWeight.bold,color: Colors.white,fontSize: 20),),
             SizedBox(height: 10,),
             Text('PC,Xbox',
                 style: TextStyle(
                 fontSize: 18,
-                  color: Colors.lightBlueAccent
+                  color: Colors.white
             ),),
             SizedBox(height: 20,),
             Text('Ghost Level',
-                style: TextStyle(
-                    color: Colors.redAccent,
-                    fontSize: 20
-                )),
+                style:GoogleFonts.exo(fontWeight: FontWeight.bold,color: Colors.white,fontSize: 20),),
             SizedBox(height: 10,),
             Text('1723',
               style: TextStyle(
                   fontSize: 18,
-                  color: Colors.lightBlueAccent
+                  color: Colors.white
               ),),
             SizedBox(height: 40,),
             RaisedButton.icon(onPressed:(){},

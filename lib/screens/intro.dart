@@ -13,7 +13,7 @@ class IntroScreen extends StatefulWidget {
 class IntroScreenState extends State<IntroScreen> {
   final pageList = [
     PageModel(
-      color: const Color(0xFF82112E  ),
+      color: const Color(0xFF2D3436),
       heroImagePath: 'images/community.png',
       title: Text("A Gamers Community",
           style: TextStyle(
@@ -31,7 +31,7 @@ class IntroScreenState extends State<IntroScreen> {
       icon: Icon(FontAwesomeIcons.globeAsia),
     ),
     PageModel(
-      color: const Color(0xFFFFFFFF  ),
+      color: const Color(0xFF0984E3 ),
       heroImagePath: 'images/gamer.png',
       title: Text("Connect With Ghosts",
           style: TextStyle(
@@ -49,9 +49,10 @@ class IntroScreenState extends State<IntroScreen> {
       icon: Icon(FontAwesomeIcons.connectdevelop),
     ),
     PageModel(
-      color: const Color(0xFF010049),
+      color: const Color(0xFF6C5CE7),
       heroImagePath: 'images/trophy-icon-21.jpg',
       title: Text("Tournaments And Prizes",
+          textAlign: TextAlign.center,
           style: TextStyle(
             fontWeight: FontWeight.w800,
             color: Colors.white,
@@ -66,7 +67,7 @@ class IntroScreenState extends State<IntroScreen> {
       icon:Icon(FontAwesomeIcons.trophy),
     ),
     PageModel(
-      color: const Color(0xFF000000),
+      color: const Color(0xFFFF4654),
       heroImagePath: 'images/gwgplay-logo.png',
       title: Text("GWG Play",
           style: TextStyle(

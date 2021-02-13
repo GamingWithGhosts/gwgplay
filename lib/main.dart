@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gwgplay/screens/chatScreen.dart';
+import 'package:gwgplay/screens/commentsScreen.dart';
+import 'package:gwgplay/screens/createTeam.dart';
 import 'package:gwgplay/screens/currentUserProfile.dart';
 import 'package:gwgplay/screens/dashboard.dart';
 import 'package:gwgplay/screens/editprofile.dart';
@@ -9,6 +11,7 @@ import 'package:gwgplay/screens/notificationsScreen.dart';
 import 'package:gwgplay/screens/otherUserScreen.dart';
 import 'package:gwgplay/screens/searchscreen.dart';
 import 'package:gwgplay/screens/splash.dart';
+import 'package:gwgplay/screens/teamDetails.dart';
 import 'package:gwgplay/screens/tournaments.dart';
 import 'package:gwgplay/screens/uploadPostScreen.dart';
 import 'package:gwgplay/screens/welcome.dart';
@@ -28,6 +31,9 @@ var routes = <String, WidgetBuilder>{
   "/notification" : (BuildContext context) => notificationsScreen(),
   "/groups" : (BuildContext context) => ghostGroupsProfile(),
   "/chats" : (BuildContext context) => ChatScreen(),
+  "/comments": (BuildContext context) => commentsScreen(),
+  "/teamDetails":(BuildContext context)=>teamDetails(),
+  "/createTeam":(BuildContext context)=>createTeam()
 };
 
 Future<void> main() async {

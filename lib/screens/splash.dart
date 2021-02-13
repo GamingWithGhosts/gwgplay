@@ -47,8 +47,9 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFF2D3436),
       body: Container(
-        decoration: BoxDecoration(color: Colors.blueGrey[800]),
+        decoration: BoxDecoration(color: Color(0xFF2D3436)),
         child: Stack(
           fit: StackFit.expand,
           children: <Widget>[
@@ -66,11 +67,13 @@ class _SplashScreenState extends State<SplashScreen> {
                               radius: 75.0,
                               backgroundImage:
                                   AssetImage('images/gwgplay-logo.png')),
-                          SizedBox(height: 50),
+                          SizedBox(height: 20),
                           Text("GWG Play", style: AppTheme.titleStyle),
                           SizedBox(height: 40),
-                          CircularProgressIndicator(),
-                          SizedBox(height: 40),
+                          Padding(
+                              padding: const EdgeInsets.only(top: 100),
+                              child: CircularProgressIndicator()),
+                          SizedBox(height: 30),
                           Text("Social Network For Gamers",
                               softWrap: true,
                               textAlign: TextAlign.center,
@@ -86,11 +89,14 @@ class _SplashScreenState extends State<SplashScreen> {
             ),
             Align(
                 alignment: Alignment.bottomCenter,
-                child: Text(
-                  "© 2021 Gaming With Ghosts",
-                  softWrap: true,
-                  textAlign: TextAlign.center,
-                  style: AppTheme.caption,
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 15),
+                  child: Text(
+                    "© 2021 Gaming With Ghosts",
+                    softWrap: true,
+                    textAlign: TextAlign.center,
+                    style: AppTheme.caption,
+                  ),
                 ))
           ],
         ),

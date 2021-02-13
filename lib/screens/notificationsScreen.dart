@@ -27,9 +27,9 @@ class _notificationsScreenState extends State<notificationsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueGrey,
+      backgroundColor: Color(0xFF2D3436),
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.black87,
         iconTheme: IconThemeData(
           color: Colors.white
         ),
@@ -40,10 +40,13 @@ class _notificationsScreenState extends State<notificationsScreen> {
       ),
       body:
           SingleChildScrollView(
-            child: Column(
-              children:notification.map((notify) => notifications(
-                notification: notify,
-              )).toList()
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 13),
+              child: Column(
+                children:notification.map((notify) => notifications(
+                  notification: notify,
+                )).toList()
+              ),
             ),
           ),
 
@@ -59,7 +62,7 @@ class notifications extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.black,
+      color: Color(0xFFDFE6E9),
       margin:EdgeInsets.all(5) ,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -76,7 +79,7 @@ class notifications extends StatelessWidget {
                  Expanded(
                    child: Text(
                       notification.name,
-                      style: GoogleFonts.exo(color: Colors.white,fontWeight: FontWeight.bold)
+                      style: GoogleFonts.exo(color: Colors.black,fontWeight: FontWeight.bold)
                     ),
                  ),
                  Row(
@@ -85,10 +88,10 @@ class notifications extends StatelessWidget {
                        notification.time,
                        style: TextStyle(
                            fontSize: 14.0,
-                           color: Colors.white
+                           color: Colors.black
                        ),
                      ),
-                     Icon(FontAwesomeIcons.bell,color: Colors.white,size: 15,)
+                     Icon(FontAwesomeIcons.bell,color: Colors.black,size: 15,)
                    ],
                  ),
                ],
@@ -99,7 +102,7 @@ class notifications extends StatelessWidget {
                  Expanded(
                    child: Text(
                       notification.content,
-                      style: GoogleFonts.ptSans(color: Colors.red)
+                      style: GoogleFonts.ptSans(color: Color(0xFFFF4654))
                     ),
                  ),
                  notification.status?Icon(FontAwesomeIcons.solidHeart,color: Colors.pink,):

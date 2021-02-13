@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gwgplay/screens/dashboard.dart';
 import 'package:gwgplay/themes/app_colour.dart';
 import 'package:gwgplay/models/user_model.dart';
@@ -73,46 +74,21 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
 
   Widget _label() {
     return Container(
-        margin: EdgeInsets.only(top: 40, bottom: 20),
+        margin: EdgeInsets.only(top: 150, bottom: 20),
         child: Column(
           children: <Widget>[
-            Text(
-              "Quick Social Login",
-              style: TextStyle(
-                  fontWeight: FontWeight.w400,
-                  fontSize: 18,
-                  color: AppColors.white),
-            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                GestureDetector(
-                  onTap: () {
-                    _loginGoogle();
-                  },
-                  child: Column(
-                    children: <Widget>[
-                      SizedBox(
-                        height: 20,
-                      ),
-                      CircleAvatar(
-                        backgroundImage: AssetImage("images/google-logo.png"),
-                        backgroundColor: Colors.white,
-                        radius: 30.0,
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        "Sign In With Google",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w400,
-                            fontSize: 18,
-                            color: AppColors.white,
-                            decoration: TextDecoration.underline),
-                      ),
-                    ],
-                  ),
+                FlatButton.icon(onPressed:(){
+                  _loginGoogle();
+                },
+                  color: Colors.white70,
+
+                  label: Text('Sign-In with Google',style: TextStyle(
+                      color: Colors.redAccent
+                  ),),
+                  icon: Icon(FontAwesomeIcons.google,color: Colors.redAccent,),
                 ),
               ],
             ),
@@ -121,35 +97,24 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   }
 
   Widget _title() {
-    return CircleAvatar(
-        backgroundColor: Colors.indigo[900],
-        radius: 75.0,
-        backgroundImage: AssetImage('images/gwgplay-logo.png'));
+    return Image(
+      height:140 ,
+      width:140 ,
+      image: AssetImage('images/gwgplay-logo.png'),
+         );
   }
 
   @override
   Widget build(BuildContext context) {
     return new WillPopScope(
       onWillPop: _onBackPressed,
-      child: new Scaffold(body: new Builder(builder: (BuildContext context) {
+      child: new Scaffold(
+          backgroundColor:Color(0xFF2D3436),
+          body: new Builder(builder: (BuildContext context) {
         _scaffoldContext = context;
         return Container(
           height: MediaQuery.of(context).size.height,
           padding: EdgeInsets.only(top: 50.0, left: 20.0, right: 20.0),
-          decoration: BoxDecoration(
-              boxShadow: <BoxShadow>[
-                BoxShadow(
-                    color: Colors.grey.shade200,
-                    offset: Offset(2, 4),
-                    blurRadius: 5,
-                    spreadRadius: 2)
-              ],
-              gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [Colors.black, Colors.blueGrey[600]]
-              )
-          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,

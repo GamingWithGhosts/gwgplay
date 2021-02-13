@@ -11,11 +11,7 @@ class _searchScreenState extends State<searchScreen> {
 
   static const historyLength = 5;
   List<String> _searchHistory = [
-        'ghost1',
-        'ghost2',
-        'ghost3',
-        'ghost4',
-        'new ghost'
+
   ];
 
   List<String> _filteredSearchHistory;
@@ -72,18 +68,21 @@ FloatingSearchBarController controller;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueGrey,
+      backgroundColor: Color(0xFF2D3436),
       appBar: AppBar(
         iconTheme: IconThemeData(
           color: Colors.white70
         ),
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.black87,
         title: Text('Search Ghosts',style: TextStyle(
           color: Colors.white70
         ),),
       ),
       body: FloatingSearchBar(
-        backgroundColor:Colors.redAccent,
+       queryStyle: TextStyle(
+         color: Colors.black
+       ) ,
+        backgroundColor:Color(0xFFDFE6E9),
         controller: controller ,
         body: FloatingSearchBarScrollNotifier(
           child: SearchResultsListView(
@@ -94,9 +93,14 @@ FloatingSearchBarController controller;
         physics:BouncingScrollPhysics() ,
         title: Text(
           selectedTerm ?? 'Search Ghost here',
-          style: Theme.of(context).textTheme.headline6,
+          style: TextStyle(
+            color: Colors.grey[800]
+          ),
         ),
         hint: 'Search Ghosts here',
+        hintStyle: TextStyle(
+          color: Colors.grey[500]
+        ),
         actions: [
           FloatingSearchBarAction.searchToClear(),
         ],
@@ -116,7 +120,7 @@ FloatingSearchBarController controller;
           return ClipRRect(
             borderRadius: BorderRadius.circular(8),
             child: Material(
-              color: Colors.black ,
+              color: Colors.white ,
               elevation: 4,
               child: Builder(
                 builder: (context){
@@ -134,7 +138,10 @@ FloatingSearchBarController controller;
                     );
                   }else if(_filteredSearchHistory.isEmpty){
                     return ListTile(
-                        title: Text(controller.query
+                        title: Text(controller.query,
+                          style: TextStyle(
+                            color: Colors.black
+                          ),
                             ),
                       leading: const Icon(FontAwesomeIcons.search),
                       onTap: (){
@@ -151,10 +158,13 @@ FloatingSearchBarController controller;
                       children: _filteredSearchHistory.map((term) => ListTile(
                         title: Text(term,maxLines: 1,
                         overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            color: Colors.black
+                          ),
                         ),
-                        leading: const Icon(FontAwesomeIcons.history,color: Colors.white70,),
+                        leading: const Icon(FontAwesomeIcons.history,color: Colors.black,),
                         trailing: IconButton(
-                          icon: const Icon(FontAwesomeIcons.times,color: Colors.white70,),
+                          icon: const Icon(FontAwesomeIcons.times,color: Colors.black,),
                           onPressed: (){
                             setState(() {
                               deleteSearchTerm(term);
@@ -194,8 +204,12 @@ final String searchTerm;
       return Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
-          children: [Icon(FontAwesomeIcons.search,size: 64,),
-          Text('Search',style: Theme.of(context).textTheme.headline5,)],
+          children: [Icon(FontAwesomeIcons.search,size: 64,color: Colors.white,),
+          SizedBox(height: 5,),
+          Text('Search Ghosts',style: TextStyle(
+            color: Colors.white,
+            fontSize: 22
+          ))],
         ),
       );
     }
@@ -203,11 +217,18 @@ final String searchTerm;
   return ListView(
   padding: EdgeInsets.only(top: fsb.height + fsb.margins.vertical),
   children: List.generate(
-  50,
-  (index) => ListTile(
-  title: Text('$searchTerm search result'),
-  onTap:() {Navigator.pushNamed(context, "/otheruser");},
-  subtitle: Text(index.toString()),
+  30,
+  (index) => Padding(
+    padding: const EdgeInsets.all(8.0),
+    child: ListTile(
+      tileColor: Color(0xFFDFE6E9),
+      leading: CircleAvatar(
+        backgroundImage: AssetImage(''),
+      ),
+    title: Text('$searchTerm',style: TextStyle(color: Colors.black),),
+    onTap:() {Navigator.pushNamed(context, "/otheruser");},
+    subtitle: Text(index.toString(),style: TextStyle(color: Colors.black),),
+    ),
   ),
   ),
   );
