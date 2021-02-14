@@ -142,7 +142,10 @@ final hashtagController = new TextEditingController();
                           color: Colors.white
                       ),),
                     ),
-                    Text('or'),
+                    Text('or'
+                    ,style: TextStyle(
+                        color: Colors.white
+                      ),),
                     RaisedButton.icon(
                       color: Color(0xFFFF4654),
                       onPressed:(){

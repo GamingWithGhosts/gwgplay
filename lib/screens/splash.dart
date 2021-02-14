@@ -1,8 +1,6 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:gwgplay/models/user_model.dart';
-import 'package:gwgplay/themes/app_theme.dart';
 import 'package:gwgplay/utils/navigator.dart';
 import 'package:gwgplay/utils/preferences.dart';
 import 'package:gwgplay/utils/storage.dart';
@@ -68,16 +66,18 @@ class _SplashScreenState extends State<SplashScreen> {
                               backgroundImage:
                                   AssetImage('images/gwgplay-logo.png')),
                           SizedBox(height: 20),
-                          Text("GWG Play", style: AppTheme.titleStyle),
+                          Text("GWG Play", style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold,color: Colors.white)),
                           SizedBox(height: 40),
                           Padding(
-                              padding: const EdgeInsets.only(top: 100),
-                              child: CircularProgressIndicator()),
+                              padding: const EdgeInsets.only(top: 65),
+                              child: CircularProgressIndicator(
+                                backgroundColor: Colors.redAccent,
+                              )),
                           SizedBox(height: 30),
                           Text("Social Network For Gamers",
                               softWrap: true,
                               textAlign: TextAlign.center,
-                              style: AppTheme.caption,
+                              style: TextStyle(fontWeight: FontWeight.w400, fontSize: 20, letterSpacing: 0.2,color: Colors.white),
                               overflow: TextOverflow.fade),
                           SizedBox(height: 40),
                         ],
@@ -95,7 +95,7 @@ class _SplashScreenState extends State<SplashScreen> {
                     "© 2021 Gaming With Ghosts",
                     softWrap: true,
                     textAlign: TextAlign.center,
-                    style: AppTheme.caption,
+                    style: TextStyle(fontWeight: FontWeight.w400, fontSize: 20, letterSpacing: 0.2,color: Colors.white),
                   ),
                 ))
           ],

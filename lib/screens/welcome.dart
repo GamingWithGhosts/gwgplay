@@ -83,12 +83,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 FlatButton.icon(onPressed:(){
                   _loginGoogle();
                 },
-                  color: Colors.white70,
+                  color: Color(0xFFFF4654),
 
                   label: Text('Sign-In with Google',style: TextStyle(
-                      color: Colors.redAccent
+                      color: Colors.white
                   ),),
-                  icon: Icon(FontAwesomeIcons.google,color: Colors.redAccent,),
+                  icon: Icon(FontAwesomeIcons.google,color: Colors.white,),
                 ),
               ],
             ),

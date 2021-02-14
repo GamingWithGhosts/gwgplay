@@ -11,7 +11,7 @@ class createTeam extends StatefulWidget {
 
 class _createTeamState extends State<createTeam> {
   final teamNameController = TextEditingController();
-
+  final descriptionController = TextEditingController();
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   String _fileName;
@@ -59,65 +59,76 @@ class _createTeamState extends State<createTeam> {
         ),),
         centerTitle: true,
       ),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 30),
-            child: Center(
-              child: CircleAvatar(
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 90),
-                  child: IconButton(
-                    onPressed: _openFileExplorerForImage,
-                    icon: Icon(
-                      FontAwesomeIcons.edit,color: Colors.white,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 30),
+              child: Center(
+                child: CircleAvatar(
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 90),
+                    child: IconButton(
+                      onPressed: _openFileExplorerForImage,
+                      icon: Icon(
+                        FontAwesomeIcons.edit,color: Colors.white,
+                      ),
                     ),
                   ),
-                ),
-                radius: 65,
-                backgroundImage: AssetImage(''),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 5,bottom: 5),
-            child: TextField(controller: teamNameController,
-              cursorColor: Colors.white70,
-              decoration:InputDecoration(
-                labelText: 'Team Name',
-                labelStyle: GoogleFonts.exo(fontWeight: FontWeight.bold,color: Colors.white),
-                hintText: 'Enter your Team Name',
-                hintStyle: TextStyle(
-                    color: Colors.grey
+                  radius: 65,
+                  backgroundImage: AssetImage(''),
                 ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 5,bottom: 5),
-            child: TextField(controller: teamNameController,
-              cursorColor: Colors.white70,
-              decoration:InputDecoration(
-                labelText: 'Team Description',
-                labelStyle: GoogleFonts.exo(fontWeight: FontWeight.bold,color: Colors.white),
-                hintText: 'Enter your Team Description',
-                hintStyle: TextStyle(
-                    color: Colors.grey
+            Padding(
+              padding: const EdgeInsets.only(left: 5,bottom: 5),
+              child: TextField(controller: teamNameController,
+                style: TextStyle(
+                    color: Colors.white
+                ),
+                cursorColor: Colors.white70,
+                decoration:InputDecoration(
+                  labelText: 'Team Name',
+                  labelStyle: GoogleFonts.exo(fontWeight: FontWeight.bold,color: Colors.white),
+                  hintText: 'Enter your Team Name',
+                  hintStyle: TextStyle(
+                      color: Colors.grey
+                  ),
                 ),
               ),
             ),
-          ),
-          SizedBox(height: 70,),
-          RaisedButton.icon(onPressed:(){},
-            icon: Icon(FontAwesomeIcons.plus,color: Colors.lightGreen,),
-            label: Text('Add members'),
-            color: Colors.blueGrey[900],),
-          SizedBox(height: 20,),
-          RaisedButton.icon(onPressed:(){},
-            icon: Icon(FontAwesomeIcons.check,color: Colors.lightGreen,),
-            label: Text('Create Team'),
-            color: Colors.blueGrey[900],),
-        ],
+            Padding(
+              padding: const EdgeInsets.only(left: 5,bottom: 5),
+              child: TextField(controller: descriptionController,
+                style: TextStyle(
+                  color: Colors.white
+                ),
+                cursorColor: Colors.white70,
+                decoration:InputDecoration(
+                  labelText: 'Team Description',
+                  labelStyle: GoogleFonts.exo(fontWeight: FontWeight.bold,color: Colors.white),
+                  hintText: 'Enter your Team Description',
+                  hintStyle: TextStyle(
+                      color: Colors.grey
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 70,),
+            RaisedButton.icon(onPressed:(){},
+              icon: Icon(FontAwesomeIcons.plus,color: Colors.white,),
+              label: Text('Add members',
+              style: TextStyle(color: Colors.white),),
+              color: Colors.redAccent,),
+            SizedBox(height: 20,),
+            RaisedButton.icon(onPressed:(){},
+              icon: Icon(FontAwesomeIcons.check,color: Colors.white,),
+              label: Text('Create Team',style: TextStyle(
+                color: Colors.white
+              ),),
+              color: Colors.redAccent,),
+          ],
+        ),
       ),
     );
   }

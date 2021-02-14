@@ -27,11 +27,15 @@ class _commentsScreenState extends State<commentsScreen> {
         alignment: Alignment.bottomCenter,
           children:[
             SingleChildScrollView(
-              child: Column(
-              children: commentContent.map((content) => comments(
-                commentContent: content,
-              )).toList(),
-              ),
+              child:
+                  Padding(
+                    padding: const EdgeInsets.only(bottom:52.0),
+                    child: Column(
+                    children: commentContent.map((content) => comments(
+                      commentContent: content,
+                    )).toList(),
+                    ),
+                  ),
             ),
             _typeCommentArea()
           ]
@@ -40,36 +44,48 @@ class _commentsScreenState extends State<commentsScreen> {
   }
 }
 
-class comments extends StatelessWidget {
+class comments extends StatefulWidget {
   final commentsModel commentContent;
   comments({this.commentContent});
 
   @override
+  _commentsState createState() => _commentsState();
+}
+
+class _commentsState extends State<comments> {
+  bool isPressed=false;
+  @override
   Widget build(BuildContext context) {
     return  Padding(
-      padding: const EdgeInsets.only(bottom: 32),
+      padding: const EdgeInsets.only(bottom: 1),
       child: ListTile(
         contentPadding: EdgeInsets.only(bottom: 0,left: 2),
                 tileColor: Color(0xFFDFE6E9),
                 leading: CircleAvatar(
+                  backgroundColor: Colors.grey,
                   radius: 17,
                 ),
                 title: Row(
                   children: [
                     Expanded(
                       child: Text(
-                          commentContent.username,
+                          widget.commentContent.username,
                         style: GoogleFonts.exo(fontWeight: FontWeight.bold,color: Color(0xFF333333))
                       ),
                     ),
-                    Text(commentContent.time,
+                    Text(widget.commentContent.time,
                         style:TextStyle(
                           color: Colors.black
                         )
                     ),
                     IconButton(
-                        icon: Icon(FontAwesomeIcons.heart,
-                          color: Colors.black,
+                      onPressed: (){
+                        setState(() {
+                          isPressed=true;
+                        });
+                      },
+                        icon: Icon(isPressed?FontAwesomeIcons.solidHeart:FontAwesomeIcons.heart,
+                          color:isPressed?Colors.pinkAccent:Colors.black,
                           size: 13,)
                     ),
                   ],
@@ -78,7 +94,7 @@ class comments extends StatelessWidget {
                   children: [
                     Expanded(
                       child:Text(
-                          commentContent.comment,
+                          widget.commentContent.comment,
                         style: TextStyle(
                           color: Color(0xFF333333)
                         ),
@@ -104,11 +120,14 @@ _typeCommentArea() {
         Container(
           padding: EdgeInsets.symmetric(horizontal: 8),
           height: 50,
-          color: Colors.grey[900],
+          color: Color(0xFF2D3436),
           child: Row(
             children: <Widget>[
               Expanded(
                 child: TextField(
+                  style: TextStyle(
+                      color: Colors.white
+                  ),
                   decoration: InputDecoration.collapsed(
                       hintText: 'Type your comment...',
                       hoverColor: Colors.black

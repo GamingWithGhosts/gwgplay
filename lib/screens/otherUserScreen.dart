@@ -130,14 +130,20 @@ class _otherUserProfileState extends State<otherUserProfile> {
               ),),
             SizedBox(height: 40,),
             RaisedButton.icon(onPressed:(){},
-            icon: Icon(FontAwesomeIcons.plus,color: Colors.lightGreen,),
-            label: Text('Follow'),
-            color: Colors.blueGrey[900],),
+            icon: Icon(FontAwesomeIcons.plus,color: Colors.white,),
+            label: Text('Follow',
+            style: TextStyle(
+                color: Colors.white
+            ),),
+            color: Color(0xFFFF4654),),
             SizedBox(height: 20,),
             RaisedButton.icon(onPressed:(){},
-              icon: Icon(FontAwesomeIcons.exclamationCircle,color: Colors.red,),
-              label: Text('Report'),
-              color: Colors.blueGrey[900],),
+              icon: Icon(FontAwesomeIcons.exclamationCircle,color: Colors.white,),
+              label: Text('Report',
+              style: TextStyle(
+                color: Colors.white
+              ),),
+              color: Color(0xFFFF4654),),
           ],
         ),
 

@@ -131,6 +131,7 @@ class teamMembers extends StatelessWidget {
           child: ListTile(
             tileColor: Color(0xFFDFE6E9),
             leading: CircleAvatar(
+              backgroundColor: Colors.grey,
               backgroundImage: AssetImage(''),
             ),
             title: Row(

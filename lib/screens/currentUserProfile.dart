@@ -5,9 +5,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:gwgplay/utils/preferences.dart';
 import 'package:gwgplay/utils/user_auth.dart';
 
-
-
-
 class currentUserProfile extends StatefulWidget {
   @override
   _currentUserProfileState createState() => _currentUserProfileState();
@@ -63,7 +60,10 @@ String facebook;
         iconTheme: IconThemeData(
           color: Colors.white70
         ),
-        title: Text('Your Ghost Profile'),
+        title: Text('Your Ghost Profile',
+            style: TextStyle(
+            color: Colors.white
+        ),),
         centerTitle: true,
         backgroundColor: Colors.black87,
         elevation: 0.0,
@@ -112,6 +112,9 @@ String facebook;
                 color: Colors.white38,
               ),
               TextField(controller: gameController,
+                style: TextStyle(
+                    color: Colors.white
+                ),
                 cursorColor: Colors.white70,
                 decoration:InputDecoration(
                   labelText: 'Your Games',
@@ -126,6 +129,9 @@ String facebook;
                 ),),
               SizedBox(height: 5.0,),
               TextField(controller: platformController,
+                style: TextStyle(
+                    color: Colors.white
+                ),
                 cursorColor: Colors.white70,
                 decoration:InputDecoration(
                   labelText: 'Your Platforms',
@@ -145,6 +151,9 @@ String facebook;
                 child: Column(
                   children: [
                         TextField(
+                          style: TextStyle(
+                              color: Colors.white
+                          ),
                           controller: twitterController,
                           cursorColor: Colors.white,
                           decoration:InputDecoration(
@@ -161,6 +170,9 @@ String facebook;
                           ),
                         ),
                     TextField(
+                      style: TextStyle(
+                          color: Colors.white
+                      ),
                       controller: instagramController,
                       cursorColor: Colors.white,
                       decoration:InputDecoration(
@@ -179,6 +191,9 @@ String facebook;
                     TextField(
                       controller: discordController,
                       cursorColor: Colors.white,
+                      style: TextStyle(
+                          color: Colors.white
+                      ),
                       decoration:InputDecoration(
                         icon: Icon(FontAwesomeIcons.discord,color: Colors.white,size: 18,),
                         labelText: 'Discord',
@@ -193,6 +208,9 @@ String facebook;
                       ),
                     ),
                     TextField(
+                      style: TextStyle(
+                          color: Colors.white
+                      ),
                       controller: facebookController,
                       cursorColor: Colors.white,
                       decoration:InputDecoration(
